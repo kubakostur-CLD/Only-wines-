@@ -5,8 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "prebuild": "npm run check:content",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "check:content": "tsx scripts/check-content.ts",
+    "gen:map": "tsx scripts/generate-map.ts",
+    "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
     "github-slugger": "^2.0.0",
@@ -38,5 +43,8 @@
     "tsx": "^4.23.15",
     "typescript": "^5",
     "world-atlas": "^2.0.2"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }
