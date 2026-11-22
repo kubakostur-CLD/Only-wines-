@@ -1,8 +1,15 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useState } from "react";
+import { useMemo, useSyncExternalStore } from "react";
+import { siteConfig } from "@/config/site";
+import { getCookie } from "@/lib/cookies";
 import { CONSENT_EVENT, readConsent, type ConsentState } from "@/lib/consent";
+
+const subscribe = (cb: () => void) => {
+  window.addEventListener(CONSENT_EVENT, cb);
+  return () => window.removeEventListener(CONSENT_EVENT, cb);
+};
 
 const provider = process.env.NEXT_PUBLIC_ANALYTICS_PROVIDER;
 const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
@@ -11,14 +18,13 @@ const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
 
 /** Subscribe to consent changes. */
 export function useConsent(): ConsentState | null {
-  const [consent, setConsent] = useState<ConsentState | null>(null);
-  useEffect(() => {
-    setConsent(readConsent());
-    const onChange = (e: Event) => setConsent((e as CustomEvent<ConsentState>).detail);
-    window.addEventListener(CONSENT_EVENT, onChange);
-    return () => window.removeEventListener(CONSENT_EVENT, onChange);
-  }, []);
-  return consent;
+  // The raw cookie string is a stable snapshot; parse it only when it changes.
+  const raw = useSyncExternalStore(
+    subscribe,
+    () => getCookie(siteConfig.cookies.consent),
+    () => null,
+  );
+  return useMemo(() => (raw ? readConsent() : null), [raw]);
 }
 
 /**

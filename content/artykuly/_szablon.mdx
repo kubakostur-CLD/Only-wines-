@@ -1,0 +1,48 @@
+---
+# ─────────────────────────────────────────────────────────────────────────────
+# SZABLON ARTYKUŁU. Skopiuj ten plik, zmień nazwę na <slug>.mdx i uzupełnij pola.
+# Pliki zaczynające się od "_" nie są publikowane.
+# ─────────────────────────────────────────────────────────────────────────────
+title: "Tytuł artykułu (40–70 znaków)"
+slug: tytul-artykulu-bez-polskich-znakow       # musi być taki sam jak nazwa pliku
+category: ciekawostki                          # ciekawostki | jak-powstaje-wino | historia-wina | szczepy | regiony-winiarskie | enoturystyka
+excerpt: "Zajawka wyświetlana na listach i pod tytułem (120–250 znaków)."
+seoDescription: "Opis dla Google (120–160 znaków). Opcjonalny; domyślnie używana jest zajawka."
+date: 2026-12-01
+# updated: 2026-12-15                          # data aktualizacji (opcjonalnie)
+author: redakcja                               # id z content/autorzy.json
+tags: [tag pierwszy, tag drugi, tag trzeci]
+cover:
+  src: /images/okladki/domyslna.svg            # własne zdjęcie: /images/moje-zdjecie.jpg (1600×900)
+  alt: "Opis tego, co widać na obrazie"
+  # credit: "Fot. Jan Kowalski / CC BY 4.0"
+# region: toskania                             # id z content/regiony.json (łączy artykuł z mapą)
+faq:
+  - q: "Pytanie?"
+    a: "Odpowiedź."
+partners: []
+#  - id: booking                               # booking | getyourguide | viator | skyscanner | rentalcars | wset | empik | amazon
+#    query: "Zielona Góra"                     # fraza wyszukiwania u partnera
+#    label: "Noclegi w Zielonej Górze"         # tekst linku (opcjonalnie)
+complianceChecked: true                        # ustaw dopiero po przejściu docs/content-guidelines.md
+draft: true                                    # usuń lub ustaw false, aby opublikować
+---
+
+Akapit wstępu: o czym jest tekst i dlaczego warto go przeczytać.
+
+## Pierwszy śródtytuł
+
+Treść. **Pogrubienie**, *kursywa*, [link wewnętrzny](/slowniczek#terroir).
+
+<Callout type="ciekawostka">
+Krótka ciekawostka wyróżniona w ramce. Typy: ciekawostka, info, definicja.
+</Callout>
+
+## Drugi śródtytuł
+
+- punkt listy
+- punkt listy
+
+<Figure src="/images/okladki/domyslna.svg" alt="Opis obrazu" caption="Podpis pod obrazem" credit="Fot. autor" />
+
+<PartnerBox partner="booking" query="Zielona Góra" title="Planujesz podróż?" label="Noclegi w Zielonej Górze" />

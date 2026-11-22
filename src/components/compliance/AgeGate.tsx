@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { siteConfig } from "@/config/site";
 import { setCookie, getCookie } from "@/lib/cookies";
 
@@ -15,15 +15,21 @@ export const AGE_OK_EVENT = "ow:age-ok";
  * - The answer is remembered for 365 days in a first-party cookie (strictly necessary cookie).
  * - Content remains in the HTML for search engines; the gate is an informational barrier.
  */
+const noopSubscribe = () => () => {};
+
 export function AgeGate() {
   const [state, setState] = useState<"ask" | "denied" | "ok">("ask");
   const confirmRef = useRef<HTMLButtonElement>(null);
+  // Server render: always "not confirmed" (CSS hides the gate for returning adults before hydration).
+  const hasCookie = useSyncExternalStore(
+    noopSubscribe,
+    () => getCookie(siteConfig.cookies.ageGate) === "1",
+    () => false,
+  );
+  const open = state !== "ok" && !hasCookie;
 
   useEffect(() => {
-    if (getCookie(siteConfig.cookies.ageGate) === "1") {
-      setState("ok");
-      return;
-    }
+    if (!open) return;
     // Make the rest of the page inert while the dialog is open
     const root = document.getElementById("app-root");
     root?.setAttribute("inert", "");
@@ -33,9 +39,9 @@ export function AgeGate() {
       root?.removeAttribute("inert");
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [open]);
 
-  if (state === "ok") return null;
+  if (!open) return null;
 
   const confirm = () => {
     setCookie(siteConfig.cookies.ageGate, "1", 365);

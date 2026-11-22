@@ -19,6 +19,9 @@ const inter = Inter({
   subsets: ["latin", "latin-ext"],
   variable: "--font-inter",
   display: "swap",
+  // Body font is not preloaded: the metric-matched fallback (adjustFontFallback) avoids layout
+  // shift, and skipping the preload frees bandwidth for the hero image (better LCP on mobile).
+  preload: false,
 });
 
 export const metadata: Metadata = {

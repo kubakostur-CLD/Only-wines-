@@ -95,7 +95,8 @@ export default async function ArticlePage({ params }: PageProps<"/[kategoria]/[s
             alt={article.cover.alt}
             width={1600}
             height={900}
-            priority
+            loading="eager"
+            fetchPriority="high"
             sizes="(min-width: 1024px) 1024px, 100vw"
             className="aspect-[16/9] h-auto w-full rounded-sm object-cover"
           />

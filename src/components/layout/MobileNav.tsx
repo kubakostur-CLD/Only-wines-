@@ -14,9 +14,6 @@ export function MobileNav({ items }: Props) {
   const pathname = usePathname();
   const menuId = useId();
 
-  // Close the menu after navigation
-  useEffect(() => setOpen(false), [pathname]);
-
   // Close on Escape
   useEffect(() => {
     if (!open) return;
@@ -52,6 +49,7 @@ export function MobileNav({ items }: Props) {
                 href={item.href}
                 className="block py-3 font-serif text-lg text-ink hover:text-burgundy-700"
                 aria-current={pathname === item.href ? "page" : undefined}
+                onClick={() => setOpen(false)}
               >
                 {item.label}
               </Link>

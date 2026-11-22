@@ -40,7 +40,8 @@ export function ArticleCard({ article, variant = "default", priority = false, he
           alt={article.cover.alt}
           width={1600}
           height={900}
-          priority={priority}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
           sizes={feature ? "(min-width: 768px) 55vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"}
           className="aspect-[16/9] h-auto w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
