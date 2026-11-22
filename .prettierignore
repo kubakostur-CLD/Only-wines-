@@ -1,0 +1,5 @@
+.next
+node_modules
+package-lock.json
+content/**/*.mdx
+src/components/map/world-paths.ts

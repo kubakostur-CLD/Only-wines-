@@ -1,0 +1,193 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/*
+ * OnlyWines.pl design tokens.
+ * Contrast (WCAG 2.1 AA) checked against cream background:
+ *   burgundy 10.5:1 · charcoal 13.9:1 · ink-muted 7.1:1 · gold-text 5.7:1
+ *   gold (#B08D57) is decorative only (lines, ornaments) – never body text.
+ */
+@theme {
+  --color-burgundy-50: #f9eef0;
+  --color-burgundy-100: #f0d5db;
+  --color-burgundy-300: #c27a8a;
+  --color-burgundy-500: #8c2a40;
+  --color-burgundy-700: #6b1e2e;
+  --color-burgundy-900: #4a1420;
+  --color-burgundy-950: #2e0c14;
+
+  --color-cream-50: #fffdf9;
+  --color-cream-100: #faf6ef;
+  --color-cream-200: #f1e8d9;
+  --color-cream-300: #e6d8c0;
+
+  --color-ink: #2a2626;
+  --color-ink-muted: #5a5250;
+
+  --color-gold-300: #d8bc88;
+  --color-gold-500: #b08d57;
+  --color-gold-700: #7a5c2b;
+
+  --font-serif: var(--font-playfair), "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --animate-fade-up: fade-up 0.6s ease-out both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-cream-100);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-burgundy-100);
+    color: var(--color-burgundy-900);
+  }
+
+  /* Visible, consistent focus ring for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--color-burgundy-700);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Age gate is rendered on the server; an inline script marks returning adults
+   before first paint so the gate never flashes for them. */
+html[data-age-ok] .age-gate {
+  display: none;
+}
+
+@layer components {
+  .container-page {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 76rem;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-gold-700);
+  }
+
+  .ornament {
+    display: block;
+    height: 1px;
+    width: 3rem;
+    background: var(--color-gold-500);
+  }
+
+  .link-underline {
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-gold-500);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: text-decoration-color 0.2s;
+  }
+  .link-underline:hover {
+    text-decoration-color: var(--color-burgundy-700);
+  }
+
+  /* Article body typography (Tailwind Typography customised) */
+  .prose-wine {
+    --tw-prose-body: var(--color-ink);
+    --tw-prose-headings: var(--color-ink);
+    --tw-prose-links: var(--color-burgundy-700);
+    --tw-prose-bold: var(--color-ink);
+    --tw-prose-quotes: var(--color-burgundy-900);
+    --tw-prose-quote-borders: var(--color-gold-500);
+    --tw-prose-bullets: var(--color-gold-500);
+    --tw-prose-counters: var(--color-gold-700);
+    --tw-prose-hr: var(--color-cream-300);
+    --tw-prose-captions: var(--color-ink-muted);
+    --tw-prose-th-borders: var(--color-cream-300);
+    --tw-prose-td-borders: var(--color-cream-200);
+  }
+  .prose-wine h2,
+  .prose-wine h3 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+  }
+  .prose-wine a {
+    text-decoration-color: var(--color-gold-500);
+    text-underline-offset: 3px;
+  }
+  .prose-wine blockquote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+  }
+}
+
+@layer components {
+  .btn-consent {
+    border-radius: 9999px;
+    border: 1px solid var(--color-burgundy-700);
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-burgundy-700);
+    background: transparent;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .btn-consent:hover {
+    background: var(--color-burgundy-700);
+    color: var(--color-cream-50);
+  }
+}
