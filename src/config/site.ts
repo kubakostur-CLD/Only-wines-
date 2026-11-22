@@ -121,5 +121,18 @@ export const footerNav = {
   ],
 };
 
+/**
+ * Legal details of the website operator (used on legal pages).
+ * TODO before launch: replace every "[UZUPEŁNIJ…]" value with real data.
+ */
+export const legalConfig = {
+  operatorName: "[UZUPEŁNIJ: imię i nazwisko lub nazwa firmy]",
+  address: "[UZUPEŁNIJ: adres siedziby / do doręczeń]",
+  nip: "[UZUPEŁNIJ: NIP, jeśli prowadzisz działalność]",
+  email: siteConfig.contactEmail,
+  /** Date shown as "last updated" on legal pages (YYYY-MM-DD). */
+  updated: "2026-11-22",
+} as const;
+
 /** Absolute URL helper. */
 export const absoluteUrl = (path = "/") => `${siteConfig.url}${path.startsWith("/") ? path : `/${path}`}`;

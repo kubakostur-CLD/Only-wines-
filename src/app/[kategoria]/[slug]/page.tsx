@@ -29,7 +29,6 @@ export async function generateMetadata({ params }: PageProps<"/[kategoria]/[slug
     title: article.title,
     description: article.seoDescription ?? article.excerpt,
     path: article.path,
-    image: `${article.path}/opengraph-image`,
     type: "article",
     publishedTime: article.date,
     modifiedTime: article.updated ?? article.date,
