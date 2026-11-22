@@ -25,35 +25,48 @@ interface Props {
  * Clearly-labelled box with partner links (wine tourism, accommodation, education, accessories).
  * Visually separated from editorial content and always marked "Link partnerski".
  */
-export function PartnerBox({ title = "Przydatne w podróży", description, items, partner, query, label }: Props) {
+export function PartnerBox({
+  title = "Przydatne w podróży",
+  description,
+  items,
+  partner,
+  query,
+  label,
+}: Props) {
   const list: PartnerBoxItem[] = items ?? (partner ? [{ partner, query, label }] : []);
   if (!list.length) return null;
 
   return (
     <aside
       aria-label="Linki partnerskie"
-      className="not-prose my-10 rounded-sm border border-gold-500/40 bg-cream-50 p-6 sm:p-7"
+      className="not-prose border-gold-500/40 bg-cream-50 my-10 rounded-sm border p-6 sm:p-7"
     >
       <div className="flex items-center justify-between gap-4">
         <p className="eyebrow">Link partnerski</p>
-        <Link href="/linki-partnerskie" className="text-xs text-ink-muted underline-offset-2 hover:underline">
+        <Link
+          href="/linki-partnerskie"
+          className="text-ink-muted text-xs underline-offset-2 hover:underline"
+        >
           Co to oznacza?
         </Link>
       </div>
-      <h3 className="mt-2 font-serif text-xl font-semibold text-ink">{title}</h3>
-      {description && <p className="mt-2 text-sm leading-relaxed text-ink-muted">{description}</p>}
+      <h3 className="text-ink mt-2 font-serif text-xl font-semibold">{title}</h3>
+      {description && <p className="text-ink-muted mt-2 text-sm leading-relaxed">{description}</p>}
       <ul className="mt-5 grid gap-3 sm:grid-cols-2">
         {list.map((item) => {
           const p = getPartner(item.partner);
           return (
-            <li key={`${item.partner}-${item.query ?? ""}`} className="rounded-sm border border-cream-300 bg-white p-4">
-              <p className="text-xs text-ink-muted">
+            <li
+              key={`${item.partner}-${item.query ?? ""}`}
+              className="border-cream-300 rounded-sm border bg-white p-4"
+            >
+              <p className="text-ink-muted text-xs">
                 {partnerCategoryLabels[p.category]} · {p.name}
               </p>
               <AffiliateLink
                 partner={item.partner}
                 query={item.query}
-                className="mt-1.5 text-sm font-semibold text-burgundy-700 hover:text-burgundy-900"
+                className="text-burgundy-700 hover:text-burgundy-900 mt-1.5 text-sm font-semibold"
               >
                 {item.label ?? p.defaultLabel}
               </AffiliateLink>
@@ -61,7 +74,7 @@ export function PartnerBox({ title = "Przydatne w podróży", description, items
           );
         })}
       </ul>
-      <p className="mt-4 text-xs leading-relaxed text-ink-muted">
+      <p className="text-ink-muted mt-4 text-xs leading-relaxed">
         Jeśli skorzystasz z linku, możemy otrzymać prowizję. Nie wpływa to na koszt usługi ani na
         treść naszych artykułów. Nie współpracujemy ze sprzedawcami alkoholu.
       </p>

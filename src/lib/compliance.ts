@@ -34,16 +34,49 @@ const WORD_RULES: WordRule[] = [
     severity: "error",
     message: "Wezwanie do zakupu jest niedozwolone (art. 13¹ ustawy o wychowaniu w trzeźwości).",
     words: [
-      "kup", "kupić", "kupisz", "kupię", "kupcie", "kupuj", "kupujcie", "kupując", "kupno", "kupna",
-      "zakup", "zakupu", "zakupy", "zakupów", "zakupić", "kupowania",
-      "zamów", "zamówić", "zamówienie", "zamówienia", "zamawiaj", "zamawiać",
+      "kup",
+      "kupić",
+      "kupisz",
+      "kupię",
+      "kupcie",
+      "kupuj",
+      "kupujcie",
+      "kupując",
+      "kupno",
+      "kupna",
+      "zakup",
+      "zakupu",
+      "zakupy",
+      "zakupów",
+      "zakupić",
+      "kupowania",
+      "zamów",
+      "zamówić",
+      "zamówienie",
+      "zamówienia",
+      "zamawiaj",
+      "zamawiać",
     ],
   },
   {
     rule: "cena",
     severity: "error",
     message: "Nie podajemy cen ani informacji handlowych.",
-    words: ["cena", "ceny", "cenie", "cenę", "ceną", "cenach", "cenowy", "cenowa", "zł", "złotych", "pln", "eur", "usd"],
+    words: [
+      "cena",
+      "ceny",
+      "cenie",
+      "cenę",
+      "ceną",
+      "cenach",
+      "cenowy",
+      "cenowa",
+      "zł",
+      "złotych",
+      "pln",
+      "eur",
+      "usd",
+    ],
     prefixes: ["promocj", "rabat", "zniżk", "przecen", "okazyjn"],
   },
   {
@@ -69,14 +102,32 @@ const WORD_RULES: WordRule[] = [
     rule: "zdrowie",
     severity: "warning",
     message: "Sprawdź, czy tekst nie łączy wina ze zdrowiem lub korzyściami zdrowotnymi.",
-    prefixes: ["zdrow", "leczni", "leczy", "odporno", "resweratrol", "antyoksydan", "przeciwutlenia"],
+    prefixes: [
+      "zdrow",
+      "leczni",
+      "leczy",
+      "odporno",
+      "resweratrol",
+      "antyoksydan",
+      "przeciwutlenia",
+    ],
   },
   {
     rule: "relaks-sukces",
     severity: "warning",
     message:
       "Sprawdź, czy tekst nie łączy alkoholu z relaksem, sukcesem, atrakcyjnością, seksualnością lub sportem.",
-    prefixes: ["relaks", "odpręż", "zrelaks", "sukces", "atrakcyjn", "seks", "sport", "uwodz", "stres"],
+    prefixes: [
+      "relaks",
+      "odpręż",
+      "zrelaks",
+      "sukces",
+      "atrakcyjn",
+      "seks",
+      "sport",
+      "uwodz",
+      "stres",
+    ],
   },
   {
     rule: "prowadzenie-pojazdu",
@@ -94,7 +145,16 @@ const WORD_RULES: WordRule[] = [
     rule: "zachęta",
     severity: "warning",
     message: "Sprawdź, czy tekst nie zachęca do picia (tryb rozkazujący, „spróbuj”, „napij się”).",
-    words: ["spróbuj", "spróbujcie", "napij", "wypij", "wypijcie", "skosztuj", "skosztujcie", "sięgnij"],
+    words: [
+      "spróbuj",
+      "spróbujcie",
+      "napij",
+      "wypij",
+      "wypijcie",
+      "skosztuj",
+      "skosztujcie",
+      "sięgnij",
+    ],
   },
 ];
 
@@ -102,7 +162,9 @@ const WORD_RULES: WordRule[] = [
 const PRICE_PATTERNS: RegExp[] = [/\d+[.,]?\d*\s?(zł|pln|€|eur|\$|usd)\b/iu, /[€$]\s?\d+/u];
 
 /** Outbound domains that sell alcohol. */
-const SHOP_LINK_PATTERNS: RegExp[] = [/https?:\/\/[^\s)]*(vivino|wine-searcher|winezja|ceneo|allegro|sklep|shop|store)[^\s)]*/iu];
+const SHOP_LINK_PATTERNS: RegExp[] = [
+  /https?:\/\/[^\s)]*(vivino|wine-searcher|winezja|ceneo|allegro|sklep|shop|store)[^\s)]*/iu,
+];
 
 /** Strip frontmatter, code and URLs so that e.g. "sklep" inside a slug does not trigger. */
 function prepare(md: string): string[] {
@@ -128,20 +190,48 @@ export function checkText(markdown: string, lineOffset = 0): ComplianceIssue[] {
         const hit =
           r.words?.includes(w) ||
           r.prefixes?.some((p) => (p.includes(" ") ? false : w.startsWith(p)));
-        if (hit) issues.push({ severity: r.severity, rule: r.rule, match: w, line: lineNo, message: r.message });
+        if (hit)
+          issues.push({
+            severity: r.severity,
+            rule: r.rule,
+            match: w,
+            line: lineNo,
+            message: r.message,
+          });
       }
       for (const p of r.prefixes?.filter((x) => x.includes(" ")) ?? []) {
-        if (lower.includes(p)) issues.push({ severity: r.severity, rule: r.rule, match: p, line: lineNo, message: r.message });
+        if (lower.includes(p))
+          issues.push({
+            severity: r.severity,
+            rule: r.rule,
+            match: p,
+            line: lineNo,
+            message: r.message,
+          });
       }
     }
 
     for (const re of PRICE_PATTERNS) {
       const m = re.exec(line);
-      if (m) issues.push({ severity: "error", rule: "cena", match: m[0], line: lineNo, message: "Wykryto cenę." });
+      if (m)
+        issues.push({
+          severity: "error",
+          rule: "cena",
+          match: m[0],
+          line: lineNo,
+          message: "Wykryto cenę.",
+        });
     }
     for (const re of SHOP_LINK_PATTERNS) {
       const m = re.exec(rawLines[idx]);
-      if (m) issues.push({ severity: "error", rule: "sklep", match: m[0], line: lineNo, message: "Link do sklepu jest niedozwolony." });
+      if (m)
+        issues.push({
+          severity: "error",
+          rule: "sklep",
+          match: m[0],
+          line: lineNo,
+          message: "Link do sklepu jest niedozwolony.",
+        });
     }
   });
 

@@ -15,7 +15,7 @@ export function SectionHeading({
   id?: string;
 }) {
   return (
-    <div className="mb-10 flex items-end justify-between gap-6 border-b border-cream-300 pb-5">
+    <div className="border-cream-300 mb-10 flex items-end justify-between gap-6 border-b pb-5">
       <div>
         {eyebrow && <p className="eyebrow">{eyebrow}</p>}
         <h2 id={id} className="mt-2 text-3xl font-semibold md:text-4xl">
@@ -23,7 +23,7 @@ export function SectionHeading({
         </h2>
       </div>
       {href && (
-        <Link href={href} className="link-underline shrink-0 text-sm font-medium text-burgundy-700">
+        <Link href={href} className="link-underline text-burgundy-700 shrink-0 text-sm font-medium">
           {linkLabel}
         </Link>
       )}

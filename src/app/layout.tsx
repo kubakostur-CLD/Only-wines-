@@ -34,7 +34,9 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   alternates: {
     canonical: "/",
-    types: { "application/rss+xml": [{ url: "/rss.xml", title: `${siteConfig.name}: najnowsze artykuły` }] },
+    types: {
+      "application/rss+xml": [{ url: "/rss.xml", title: `${siteConfig.name}: najnowsze artykuły` }],
+    },
   },
   openGraph: {
     type: "website",
@@ -54,7 +56,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pl" className={`${playfair.variable} ${inter.variable} antialiased`} suppressHydrationWarning>
+    <html
+      lang="pl"
+      className={`${playfair.variable} ${inter.variable} antialiased`}
+      suppressHydrationWarning
+    >
       <head>
         <AgeGateScript />
         <ConsentModeDefaults />

@@ -27,7 +27,9 @@ export function WineMap({ regions }: { regions: Region[] }) {
     const markers = regions
       .map((r) => {
         const xy = projection([r.lon, r.lat]);
-        return xy ? { id: r.id, x: (xy[0] / view.width) * 100, y: (xy[1] / view.height) * 100 } : null;
+        return xy
+          ? { id: r.id, x: (xy[0] / view.width) * 100, y: (xy[1] / view.height) * 100 }
+          : null;
       })
       .filter((m): m is NonNullable<typeof m> => !!m && m.x > 1 && m.x < 99 && m.y > 1 && m.y < 99);
     return {
@@ -36,10 +38,21 @@ export function WineMap({ regions }: { regions: Region[] }) {
       ratio: view.width / view.height,
       markers,
       background: (
-        <svg viewBox={`0 0 ${view.width} ${view.height}`} className="block h-auto w-full" aria-hidden="true" focusable="false">
+        <svg
+          viewBox={`0 0 ${view.width} ${view.height}`}
+          className="block h-auto w-full"
+          aria-hidden="true"
+          focusable="false"
+        >
           <rect width={view.width} height={view.height} fill="#fdfbf7" />
           <path d={view.graticule} fill="none" stroke="#efe6d6" strokeWidth="0.8" />
-          <path d={view.land} fill="#e9dcc4" stroke="#cdb994" strokeWidth="0.7" strokeLinejoin="round" />
+          <path
+            d={view.land}
+            fill="#e9dcc4"
+            stroke="#cdb994"
+            strokeWidth="0.7"
+            strokeLinejoin="round"
+          />
         </svg>
       ),
     };

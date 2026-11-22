@@ -25,7 +25,15 @@ export function AffiliateLink({ partner, query, children, className = "" }: Prop
       data-partner={p.id}
     >
       {children ?? p.defaultLabel}
-      <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <svg
+        aria-hidden="true"
+        width="12"
+        height="12"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
         <path d="M7 17L17 7M9 7h8v8" />
       </svg>
       <span className="sr-only">(link partnerski, otwiera się w nowej karcie)</span>

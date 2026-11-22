@@ -54,16 +54,16 @@ export function AgeGate() {
 
   return (
     <div
-      className="age-gate fixed inset-0 z-[100] flex items-center justify-center bg-burgundy-950/95 p-4"
+      className="age-gate bg-burgundy-950/95 fixed inset-0 z-[100] flex items-center justify-center p-4"
       role="dialog"
       aria-modal="true"
       aria-labelledby="age-gate-title"
       aria-describedby="age-gate-desc"
     >
-      <div className="w-full max-w-md rounded-sm bg-cream-50 px-6 py-10 text-center shadow-2xl sm:px-10">
-        <p className="font-serif text-2xl text-burgundy-700">
+      <div className="bg-cream-50 w-full max-w-md rounded-sm px-6 py-10 text-center shadow-2xl sm:px-10">
+        <p className="text-burgundy-700 font-serif text-2xl">
           Only<span className="italic">Wines</span>
-          <span className="text-base text-gold-700">.pl</span>
+          <span className="text-gold-700 text-base">.pl</span>
         </p>
         <span className="ornament mx-auto mt-5" aria-hidden="true" />
         {state === "ask" ? (
@@ -71,7 +71,7 @@ export function AgeGate() {
             <h2 id="age-gate-title" className="mt-6 text-2xl font-semibold">
               Czy masz ukończone 18 lat?
             </h2>
-            <p id="age-gate-desc" className="mt-3 text-sm leading-relaxed text-ink-muted">
+            <p id="age-gate-desc" className="text-ink-muted mt-3 text-sm leading-relaxed">
               OnlyWines.pl to magazyn o kulturze, historii i technice winiarskiej. Ze względu na
               tematykę serwis jest przeznaczony wyłącznie dla osób pełnoletnich.
             </p>
@@ -80,19 +80,19 @@ export function AgeGate() {
                 ref={confirmRef}
                 type="button"
                 onClick={confirm}
-                className="rounded-full bg-burgundy-700 px-6 py-3 text-sm font-semibold text-cream-50 transition-colors hover:bg-burgundy-900"
+                className="bg-burgundy-700 text-cream-50 hover:bg-burgundy-900 rounded-full px-6 py-3 text-sm font-semibold transition-colors"
               >
                 Tak, mam ukończone 18 lat
               </button>
               <button
                 type="button"
                 onClick={() => setState("denied")}
-                className="rounded-full border border-ink/20 px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-cream-200"
+                className="border-ink/20 text-ink hover:bg-cream-200 rounded-full border px-6 py-3 text-sm font-semibold transition-colors"
               >
                 Nie
               </button>
             </div>
-            <p className="mt-6 text-xs text-ink-muted">
+            <p className="text-ink-muted mt-6 text-xs">
               Zapamiętamy Twoją odpowiedź w niezbędnym pliku cookie na 12 miesięcy.
             </p>
           </>
@@ -101,7 +101,7 @@ export function AgeGate() {
             <h2 id="age-gate-title" className="mt-6 text-2xl font-semibold">
               Zapraszamy po osiemnastce
             </h2>
-            <p id="age-gate-desc" className="mt-3 text-sm leading-relaxed text-ink-muted">
+            <p id="age-gate-desc" className="text-ink-muted mt-3 text-sm leading-relaxed">
               Ten serwis jest przeznaczony wyłącznie dla osób pełnoletnich. Dziękujemy za szczerość.
             </p>
           </>

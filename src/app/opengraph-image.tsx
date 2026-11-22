@@ -6,5 +6,8 @@ export const contentType = "image/png";
 export const alt = `${siteConfig.name}: ${siteConfig.tagline}`;
 
 export default function Image() {
-  return renderOg({ title: "Opowieści o winie: kultura, historia i rzemiosło", eyebrow: "Magazyn o świecie wina" });
+  return renderOg({
+    title: "Opowieści o winie: kultura, historia i rzemiosło",
+    eyebrow: "Magazyn o świecie wina",
+  });
 }

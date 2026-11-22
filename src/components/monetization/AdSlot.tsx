@@ -39,7 +39,7 @@ export function AdSlot({ slot, minHeight = 250, className = "" }: Props) {
     return (
       <div className={`my-12 ${className}`}>
         <div
-          className="flex items-center justify-center border border-dashed border-cream-300 text-xs text-ink-muted"
+          className="border-cream-300 text-ink-muted flex items-center justify-center border border-dashed text-xs"
           style={{ minHeight }}
         >
           Miejsce na reklamę (AdSense: slot {slot}), widoczne tylko w trybie deweloperskim
@@ -49,8 +49,10 @@ export function AdSlot({ slot, minHeight = 250, className = "" }: Props) {
   }
 
   return (
-    <aside aria-label="Reklama" className={`my-12 border-y border-cream-300 py-4 ${className}`}>
-      <p className="mb-2 text-center text-[11px] tracking-widest text-ink-muted uppercase">Reklama</p>
+    <aside aria-label="Reklama" className={`border-cream-300 my-12 border-y py-4 ${className}`}>
+      <p className="text-ink-muted mb-2 text-center text-[11px] tracking-widest uppercase">
+        Reklama
+      </p>
       <ins
         className="adsbygoogle block"
         style={{ display: "block", minHeight }}

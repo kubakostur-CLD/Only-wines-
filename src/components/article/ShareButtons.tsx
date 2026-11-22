@@ -34,7 +34,9 @@ export function ShareButtons({ url, title }: { url: string; title: string }) {
           target={l.name === "E-mail" ? undefined : "_blank"}
           rel="noopener noreferrer"
           className="chip"
-          aria-label={l.name === "E-mail" ? "Wyślij e-mailem" : `Udostępnij na ${l.name} (nowa karta)`}
+          aria-label={
+            l.name === "E-mail" ? "Wyślij e-mailem" : `Udostępnij na ${l.name} (nowa karta)`
+          }
         >
           {l.name}
         </a>

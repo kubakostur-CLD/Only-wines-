@@ -19,8 +19,8 @@ export default function ContactPage() {
     >
       <p>
         Napisz do nas przez formularz lub bezpośrednio na adres{" "}
-        <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>. Odpowiadamy zwykle w ciągu kilku dni
-        roboczych.
+        <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>. Odpowiadamy
+        zwykle w ciągu kilku dni roboczych.
       </p>
       <ContactForm email={siteConfig.contactEmail} subject="Wiadomość ze strony OnlyWines.pl" />
       <p className="text-sm">

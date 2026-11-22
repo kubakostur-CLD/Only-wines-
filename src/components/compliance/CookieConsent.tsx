@@ -58,16 +58,16 @@ export function CookieConsent() {
   return (
     <section
       aria-label="Ustawienia plików cookie"
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-cream-300 bg-cream-50 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] animate-fade-up"
+      className="border-cream-300 bg-cream-50 animate-fade-up fixed inset-x-0 bottom-0 z-50 border-t shadow-[0_-8px_30px_rgba(0,0,0,0.08)]"
     >
       <div className="container-page py-5">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="max-w-3xl text-sm leading-relaxed text-ink">
+          <div className="text-ink max-w-3xl text-sm leading-relaxed">
             <h2 className="font-serif text-lg font-semibold">Szanujemy Twoją prywatność</h2>
-            <p className="mt-1 text-ink-muted">
+            <p className="text-ink-muted mt-1">
               Używamy niezbędnych plików cookie, aby serwis działał. Za Twoją zgodą użyjemy też
-              cookie statystycznych (anonimowe statystyki odwiedzin) i reklamowych. Zgodę możesz
-              w każdej chwili zmienić w stopce strony. Szczegóły w{" "}
+              cookie statystycznych (anonimowe statystyki odwiedzin) i reklamowych. Zgodę możesz w
+              każdej chwili zmienić w stopce strony. Szczegóły w{" "}
               <Link href="/polityka-cookies" className="link-underline text-burgundy-700">
                 polityce cookies
               </Link>
@@ -78,7 +78,12 @@ export function CookieConsent() {
             <button type="button" onClick={() => decide(false, false)} className="btn-consent">
               Odrzucam
             </button>
-            <button type="button" onClick={() => setDetails((v) => !v)} aria-expanded={details} className="btn-consent">
+            <button
+              type="button"
+              onClick={() => setDetails((v) => !v)}
+              aria-expanded={details}
+              className="btn-consent"
+            >
               Ustawienia
             </button>
             <button type="button" onClick={() => decide(true, true)} className="btn-consent">
@@ -88,26 +93,42 @@ export function CookieConsent() {
         </div>
 
         {details && (
-          <div className="mt-5 grid gap-3 border-t border-cream-200 pt-5 text-sm sm:grid-cols-3">
-            <label className="flex gap-3 rounded border border-cream-200 bg-white p-3">
-              <input type="checkbox" checked disabled className="mt-1 accent-burgundy-700" />
+          <div className="border-cream-200 mt-5 grid gap-3 border-t pt-5 text-sm sm:grid-cols-3">
+            <label className="border-cream-200 flex gap-3 rounded border bg-white p-3">
+              <input type="checkbox" checked disabled className="accent-burgundy-700 mt-1" />
               <span>
                 <strong className="block">Niezbędne</strong>
-                <span className="text-ink-muted">Weryfikacja wieku i zapamiętanie zgód. Zawsze aktywne.</span>
+                <span className="text-ink-muted">
+                  Weryfikacja wieku i zapamiętanie zgód. Zawsze aktywne.
+                </span>
               </span>
             </label>
-            <label className="flex cursor-pointer gap-3 rounded border border-cream-200 bg-white p-3">
-              <input type="checkbox" checked={analytics} onChange={(e) => setAnalytics(e.target.checked)} className="mt-1 accent-burgundy-700" />
+            <label className="border-cream-200 flex cursor-pointer gap-3 rounded border bg-white p-3">
+              <input
+                type="checkbox"
+                checked={analytics}
+                onChange={(e) => setAnalytics(e.target.checked)}
+                className="accent-burgundy-700 mt-1"
+              />
               <span>
                 <strong className="block">Statystyczne</strong>
-                <span className="text-ink-muted">Anonimowe statystyki odwiedzin, które pomagają nam ulepszać treści.</span>
+                <span className="text-ink-muted">
+                  Anonimowe statystyki odwiedzin, które pomagają nam ulepszać treści.
+                </span>
               </span>
             </label>
-            <label className="flex cursor-pointer gap-3 rounded border border-cream-200 bg-white p-3">
-              <input type="checkbox" checked={ads} onChange={(e) => setAds(e.target.checked)} className="mt-1 accent-burgundy-700" />
+            <label className="border-cream-200 flex cursor-pointer gap-3 rounded border bg-white p-3">
+              <input
+                type="checkbox"
+                checked={ads}
+                onChange={(e) => setAds(e.target.checked)}
+                className="accent-burgundy-700 mt-1"
+              />
               <span>
                 <strong className="block">Reklamowe</strong>
-                <span className="text-ink-muted">Wyświetlanie reklam Google, które finansują magazyn.</span>
+                <span className="text-ink-muted">
+                  Wyświetlanie reklam Google, które finansują magazyn.
+                </span>
               </span>
             </label>
             <div className="sm:col-span-3">

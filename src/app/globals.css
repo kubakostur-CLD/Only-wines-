@@ -184,7 +184,9 @@ html[data-age-ok] .age-gate {
     font-weight: 600;
     color: var(--color-burgundy-700);
     background: transparent;
-    transition: background-color 0.2s, color 0.2s;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
   }
   .btn-consent:hover {
     background: var(--color-burgundy-700);

@@ -55,24 +55,31 @@ export function NewsletterForm({ dark = false }: { dark?: boolean }) {
           required
           autoComplete="email"
           placeholder="Twój adres e-mail"
-          className="h-12 flex-1 rounded-full border border-cream-300 bg-white px-5 text-ink placeholder:text-ink-muted focus:border-burgundy-700 focus:outline-none"
+          className="border-cream-300 text-ink placeholder:text-ink-muted focus:border-burgundy-700 h-12 flex-1 rounded-full border bg-white px-5 focus:outline-none"
         />
         <button
           type="submit"
           disabled={status === "sending"}
           className={`h-12 rounded-full px-7 text-sm font-semibold transition-colors ${
-            dark ? "bg-cream-50 text-burgundy-900 hover:bg-white" : "bg-burgundy-700 text-cream-50 hover:bg-burgundy-900"
+            dark
+              ? "bg-cream-50 text-burgundy-900 hover:bg-white"
+              : "bg-burgundy-700 text-cream-50 hover:bg-burgundy-900"
           }`}
         >
           {status === "sending" ? "Wysyłanie…" : "Zapisz się"}
         </button>
       </div>
       <label className={`mt-4 flex items-start gap-3 text-xs leading-relaxed ${muted}`}>
-        <input type="checkbox" name="zgoda" required className="mt-0.5 h-4 w-4 shrink-0 accent-burgundy-700" />
+        <input
+          type="checkbox"
+          name="zgoda"
+          required
+          className="accent-burgundy-700 mt-0.5 h-4 w-4 shrink-0"
+        />
         <span>
-          Oświadczam, że mam ukończone 18 lat i chcę otrzymywać newsletter OnlyWines.pl. Wyrażam zgodę
-          na przetwarzanie mojego adresu e-mail w tym celu. Zgodę mogę wycofać w każdej chwili.
-          Szczegóły:{" "}
+          Oświadczam, że mam ukończone 18 lat i chcę otrzymywać newsletter OnlyWines.pl. Wyrażam
+          zgodę na przetwarzanie mojego adresu e-mail w tym celu. Zgodę mogę wycofać w każdej
+          chwili. Szczegóły:{" "}
           <Link href="/polityka-prywatnosci" className="underline underline-offset-2">
             polityka prywatności
           </Link>
@@ -80,7 +87,7 @@ export function NewsletterForm({ dark = false }: { dark?: boolean }) {
         </span>
       </label>
       {status === "error" && (
-        <p role="alert" className="mt-3 text-sm text-burgundy-500">
+        <p role="alert" className="text-burgundy-500 mt-3 text-sm">
           Nie udało się zapisać. Spróbuj ponownie za chwilę.
         </p>
       )}

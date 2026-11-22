@@ -17,7 +17,9 @@ const results: { file: string; issues: ComplianceIssue[] }[] = [];
 const color = (c: number, s: string) => (process.stdout.isTTY ? `\x1b[${c}m${s}\x1b[0m` : s);
 
 // 1) Articles
-for (const file of fs.readdirSync(ARTICLES).filter((f) => f.endsWith(".mdx") && !f.startsWith("_"))) {
+for (const file of fs
+  .readdirSync(ARTICLES)
+  .filter((f) => f.endsWith(".mdx") && !f.startsWith("_"))) {
   const raw = fs.readFileSync(path.join(ARTICLES, file), "utf8");
   const { data, content } = matter(raw);
   const issues: ComplianceIssue[] = [];
@@ -25,14 +27,27 @@ for (const file of fs.readdirSync(ARTICLES).filter((f) => f.endsWith(".mdx") && 
   const fm = articleFrontmatterSchema.safeParse(data);
   if (!fm.success) {
     for (const i of fm.error.issues) {
-      issues.push({ severity: "error", rule: "frontmatter", match: i.path.join("."), line: 1, message: i.message });
+      issues.push({
+        severity: "error",
+        rule: "frontmatter",
+        match: i.path.join("."),
+        line: 1,
+        message: i.message,
+      });
     }
   }
   const bodyOffset = raw.split("\n").length - content.split("\n").length;
-  const fmText = [data.title, data.excerpt, data.seoDescription, ...(data.faq ?? []).flatMap((f: { q: string; a: string }) => [f.q, f.a])]
+  const fmText = [
+    data.title,
+    data.excerpt,
+    data.seoDescription,
+    ...(data.faq ?? []).flatMap((f: { q: string; a: string }) => [f.q, f.a]),
+  ]
     .filter(Boolean)
     .join("\n");
-  issues.push(...checkText(fmText).map((i) => ({ ...i, line: 1, message: `[frontmatter] ${i.message}` })));
+  issues.push(
+    ...checkText(fmText).map((i) => ({ ...i, line: 1, message: `[frontmatter] ${i.message}` })),
+  );
   issues.push(...checkText(content, bodyOffset), ...checkImages(content, bodyOffset));
   results.push({ file: `content/artykuly/${file}`, issues });
 }

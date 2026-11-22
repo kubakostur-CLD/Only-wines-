@@ -6,7 +6,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const articles = getAllArticles();
   const latest = articles[0]?.updated ?? articles[0]?.date;
 
-  const staticPages = ["/slowniczek", "/quiz", "/o-nas", "/kontakt", "/wspolpraca", "/polityka-prywatnosci", "/polityka-cookies", "/regulamin", "/linki-partnerskie"];
+  const staticPages = [
+    "/slowniczek",
+    "/quiz",
+    "/o-nas",
+    "/kontakt",
+    "/wspolpraca",
+    "/polityka-prywatnosci",
+    "/polityka-cookies",
+    "/regulamin",
+    "/linki-partnerskie",
+  ];
 
   return [
     { url: absoluteUrl("/"), lastModified: latest, changeFrequency: "daily", priority: 1 },
@@ -22,6 +32,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
-    ...staticPages.map((p) => ({ url: absoluteUrl(p), changeFrequency: "yearly" as const, priority: 0.3 })),
+    ...staticPages.map((p) => ({
+      url: absoluteUrl(p),
+      changeFrequency: "yearly" as const,
+      priority: 0.3,
+    })),
   ];
 }

@@ -23,7 +23,9 @@ export function ProsePage({
       <PageHeader title={title} lead={lead} eyebrow={eyebrow} crumbs={crumbs} />
       <div className="container-page pt-12">
         <div className="prose prose-lg prose-wine max-w-3xl">
-          {updated && <p className="text-sm text-ink-muted">Ostatnia aktualizacja: {formatDate(updated)}</p>}
+          {updated && (
+            <p className="text-ink-muted text-sm">Ostatnia aktualizacja: {formatDate(updated)}</p>
+          )}
           {children}
         </div>
       </div>

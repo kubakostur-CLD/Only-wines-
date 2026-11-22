@@ -7,7 +7,10 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
     <ol className="mt-3 space-y-2 text-sm">
       {items.map((item) => (
         <li key={item.id} className={item.level === 3 ? "pl-4" : ""}>
-          <a href={`#${item.id}`} className="block leading-snug text-ink-muted transition-colors hover:text-burgundy-700">
+          <a
+            href={`#${item.id}`}
+            className="text-ink-muted hover:text-burgundy-700 block leading-snug transition-colors"
+          >
             {item.text}
           </a>
         </li>
@@ -17,7 +20,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
   return (
     <nav aria-label="Spis treści">
       {/* Mobile: collapsible */}
-      <details className="rounded-sm border border-cream-300 bg-cream-50 p-4 lg:hidden">
+      <details className="border-cream-300 bg-cream-50 rounded-sm border p-4 lg:hidden">
         <summary className="cursor-pointer text-sm font-semibold">Spis treści</summary>
         {list}
       </details>

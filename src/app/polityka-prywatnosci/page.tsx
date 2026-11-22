@@ -5,7 +5,8 @@ import { ProsePage } from "@/components/ui/ProsePage";
 
 export const metadata = buildMetadata({
   title: "Polityka prywatności",
-  description: "Polityka prywatności serwisu OnlyWines.pl: jakie dane przetwarzamy, w jakim celu i jakie prawa Ci przysługują (RODO).",
+  description:
+    "Polityka prywatności serwisu OnlyWines.pl: jakie dane przetwarzamy, w jakim celu i jakie prawa Ci przysługują (RODO).",
   path: "/polityka-prywatnosci",
 });
 
@@ -26,8 +27,9 @@ export default function PrivacyPage() {
       <h2>1. Administrator danych</h2>
       <p>
         Administratorem Twoich danych osobowych jest {operatorName}, {address}
-        {nip.startsWith("[") ? "" : `, NIP ${nip}`} (dalej: „Administrator”), prowadzący serwis {siteConfig.name}. W sprawach
-        dotyczących danych osobowych napisz na adres <a href={`mailto:${email}`}>{email}</a>.
+        {nip.startsWith("[") ? "" : `, NIP ${nip}`} (dalej: „Administrator”), prowadzący serwis{" "}
+        {siteConfig.name}. W sprawach dotyczących danych osobowych napisz na adres{" "}
+        <a href={`mailto:${email}`}>{email}</a>.
       </p>
 
       <h2>2. Jakie dane przetwarzamy i w jakim celu</h2>
@@ -73,7 +75,10 @@ export default function PrivacyPage() {
           </tr>
         </tbody>
       </table>
-      <p>Podanie danych jest dobrowolne, ale bez adresu e-mail nie zapiszesz się na newsletter i nie otrzymasz odpowiedzi na wiadomość.</p>
+      <p>
+        Podanie danych jest dobrowolne, ale bez adresu e-mail nie zapiszesz się na newsletter i nie
+        otrzymasz odpowiedzi na wiadomość.
+      </p>
 
       <h2>3. Odbiorcy danych</h2>
       <p>Twoje dane mogą być przekazywane podmiotom, które pomagają nam prowadzić serwis:</p>
@@ -85,9 +90,9 @@ export default function PrivacyPage() {
         <li>Google Ireland Ltd. (reklamy Google AdSense, jeśli są aktywne).</li>
       </ul>
       <p>
-        Niektórzy z tych dostawców mogą przekazywać dane poza Europejski Obszar Gospodarczy, w szczególności do
-        USA. Odbywa się to na podstawie decyzji Komisji Europejskiej (EU-US Data Privacy Framework) lub
-        standardowych klauzul umownych.
+        Niektórzy z tych dostawców mogą przekazywać dane poza Europejski Obszar Gospodarczy, w
+        szczególności do USA. Odbywa się to na podstawie decyzji Komisji Europejskiej (EU-US Data
+        Privacy Framework) lub standardowych klauzul umownych.
       </p>
 
       <h2>4. Twoje prawa</h2>
@@ -98,27 +103,36 @@ export default function PrivacyPage() {
         <li>usunięcia danych,</li>
         <li>ograniczenia przetwarzania,</li>
         <li>przenoszenia danych,</li>
-        <li>wniesienia sprzeciwu wobec przetwarzania opartego na prawnie uzasadnionym interesie,</li>
-        <li>wycofania zgody w dowolnym momencie (bez wpływu na zgodność z prawem wcześniejszego przetwarzania),</li>
-        <li>wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (ul. Stawki 2, 00-193 Warszawa).</li>
+        <li>
+          wniesienia sprzeciwu wobec przetwarzania opartego na prawnie uzasadnionym interesie,
+        </li>
+        <li>
+          wycofania zgody w dowolnym momencie (bez wpływu na zgodność z prawem wcześniejszego
+          przetwarzania),
+        </li>
+        <li>
+          wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (ul. Stawki 2, 00-193
+          Warszawa).
+        </li>
       </ul>
 
       <h2>5. Pliki cookie</h2>
       <p>
-        Zasady korzystania z plików cookie opisujemy w <Link href="/polityka-cookies">polityce cookies</Link>. Zgody
-        możesz zmienić w każdej chwili przez link „Ustawienia cookies” w stopce strony.
+        Zasady korzystania z plików cookie opisujemy w{" "}
+        <Link href="/polityka-cookies">polityce cookies</Link>. Zgody możesz zmienić w każdej chwili
+        przez link „Ustawienia cookies” w stopce strony.
       </p>
 
       <h2>6. Profilowanie</h2>
       <p>
-        Nie podejmujemy decyzji opartych wyłącznie na zautomatyzowanym przetwarzaniu. Jeśli wyrazisz zgodę na
-        cookie reklamowe, Google może dobierać reklamy na podstawie Twojej aktywności.
+        Nie podejmujemy decyzji opartych wyłącznie na zautomatyzowanym przetwarzaniu. Jeśli wyrazisz
+        zgodę na cookie reklamowe, Google może dobierać reklamy na podstawie Twojej aktywności.
       </p>
 
       <h2>7. Osoby niepełnoletnie</h2>
       <p>
-        Serwis jest przeznaczony wyłącznie dla osób pełnoletnich. Nie zbieramy świadomie danych osób poniżej 18.
-        roku życia.
+        Serwis jest przeznaczony wyłącznie dla osób pełnoletnich. Nie zbieramy świadomie danych osób
+        poniżej 18. roku życia.
       </p>
 
       <h2>8. Zmiany polityki</h2>

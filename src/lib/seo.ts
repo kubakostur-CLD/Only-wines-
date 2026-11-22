@@ -111,7 +111,11 @@ export const articleJsonLd = (a: {
   wordCount: a.wordCount,
   mainEntityOfPage: { "@type": "WebPage", "@id": absoluteUrl(a.path) },
   author: { "@type": "Organization", name: a.authorName, url: absoluteUrl("/o-nas") },
-  publisher: { "@id": absoluteUrl("/#organizacja"), "@type": "Organization", name: siteConfig.name },
+  publisher: {
+    "@id": absoluteUrl("/#organizacja"),
+    "@type": "Organization",
+    name: siteConfig.name,
+  },
 });
 
 export const faqJsonLd = (faq: { q: string; a: string }[]) => ({

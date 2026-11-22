@@ -48,11 +48,17 @@ export default function GlossaryPage() {
         crumbs={[{ name: "Słowniczek", href: "/slowniczek" }]}
       />
       <div className="container-page pt-10">
-        <nav aria-label="Litery alfabetu" className="sticky top-16 z-10 -mx-4 border-b border-cream-300 bg-cream-100/95 px-4 py-3 backdrop-blur lg:top-20">
+        <nav
+          aria-label="Litery alfabetu"
+          className="border-cream-300 bg-cream-100/95 sticky top-16 z-10 -mx-4 border-b px-4 py-3 backdrop-blur lg:top-20"
+        >
           <ul className="flex flex-wrap gap-1">
             {letters.map((l) => (
               <li key={l}>
-                <a href={`#litera-${l}`} className="flex h-9 w-9 items-center justify-center rounded-full font-serif text-lg hover:bg-burgundy-700 hover:text-cream-50">
+                <a
+                  href={`#litera-${l}`}
+                  className="hover:bg-burgundy-700 hover:text-cream-50 flex h-9 w-9 items-center justify-center rounded-full font-serif text-lg"
+                >
                   {l}
                 </a>
               </li>
@@ -62,18 +68,32 @@ export default function GlossaryPage() {
 
         <div className="mt-10 space-y-14">
           {letters.map((l) => (
-            <section key={l} id={`litera-${l}`} aria-labelledby={`naglowek-${l}`} className="grid gap-6 md:grid-cols-[6rem_1fr]">
-              <h2 id={`naglowek-${l}`} className="font-serif text-6xl leading-none text-gold-700">{l}</h2>
-              <dl className="divide-y divide-cream-300 border-t border-cream-300">
+            <section
+              key={l}
+              id={`litera-${l}`}
+              aria-labelledby={`naglowek-${l}`}
+              className="grid gap-6 md:grid-cols-[6rem_1fr]"
+            >
+              <h2 id={`naglowek-${l}`} className="text-gold-700 font-serif text-6xl leading-none">
+                {l}
+              </h2>
+              <dl className="divide-cream-300 border-cream-300 divide-y border-t">
                 {groups.get(l)!.map((e) => (
-                  <div key={e.slug} id={e.slug} className="grid gap-2 py-6 md:grid-cols-[14rem_1fr] md:gap-8">
+                  <div
+                    key={e.slug}
+                    id={e.slug}
+                    className="grid gap-2 py-6 md:grid-cols-[14rem_1fr] md:gap-8"
+                  >
                     <dt className="font-serif text-xl font-semibold">{e.term}</dt>
-                    <dd className="leading-relaxed text-ink-muted">
+                    <dd className="text-ink-muted leading-relaxed">
                       {e.definition}
                       {e.link && (
                         <>
                           {" "}
-                          <Link href={e.link} className="link-underline whitespace-nowrap text-burgundy-700">
+                          <Link
+                            href={e.link}
+                            className="link-underline text-burgundy-700 whitespace-nowrap"
+                          >
                             Czytaj więcej
                           </Link>
                         </>

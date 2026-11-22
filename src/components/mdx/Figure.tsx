@@ -30,7 +30,7 @@ export function Figure({
         className="h-auto w-full rounded-sm"
       />
       {(caption || credit) && (
-        <figcaption className="mt-2 text-sm text-ink-muted">
+        <figcaption className="text-ink-muted mt-2 text-sm">
           {caption}
           {credit && <span className="ml-1 text-xs">({credit})</span>}
         </figcaption>

@@ -14,9 +14,13 @@ import type { PartnerId } from "@/config/partners";
 const components = {
   Callout,
   Figure,
-  PartnerBox: (props: { partner: PartnerId; query?: string; title?: string; label?: string; description?: string }) => (
-    <PartnerBox {...props} />
-  ),
+  PartnerBox: (props: {
+    partner: PartnerId;
+    query?: string;
+    title?: string;
+    label?: string;
+    description?: string;
+  }) => <PartnerBox {...props} />,
   // Internal links use next/link; external links open in a new tab.
   a: ({ href = "", children }: { href?: string; children?: React.ReactNode }) =>
     href.startsWith("/") || href.startsWith("#") ? (

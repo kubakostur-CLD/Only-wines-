@@ -24,13 +24,23 @@ export function WineMapClient({ views, regions }: { views: MapViewData[]; region
       <div>
         <div role="group" aria-label="Widok mapy" className="mb-3 flex gap-2">
           {views.map((v) => (
-            <button key={v.key} type="button" className="chip" aria-pressed={viewKey === v.key} onClick={() => setViewKey(v.key)}>
+            <button
+              key={v.key}
+              type="button"
+              className="chip"
+              aria-pressed={viewKey === v.key}
+              onClick={() => setViewKey(v.key)}
+            >
               {v.label}
             </button>
           ))}
         </div>
         {views.map((v) => (
-          <div key={v.key} hidden={v.key !== viewKey} className="relative overflow-hidden rounded-sm border border-cream-300">
+          <div
+            key={v.key}
+            hidden={v.key !== viewKey}
+            className="border-cream-300 relative overflow-hidden rounded-sm border"
+          >
             {v.background}
             <ul aria-label={`Regiony na mapie: ${v.label}`}>
               {v.markers.map((m) => {
@@ -48,7 +58,9 @@ export function WineMapClient({ views, regions }: { views: MapViewData[]; region
                     >
                       <span
                         className={`block rounded-full border-2 border-white shadow transition-transform group-hover:scale-125 ${
-                          active ? "h-4 w-4 bg-burgundy-700 ring-4 ring-burgundy-700/25" : "h-3 w-3 bg-gold-700"
+                          active
+                            ? "bg-burgundy-700 ring-burgundy-700/25 h-4 w-4 ring-4"
+                            : "bg-gold-700 h-3 w-3"
                         }`}
                       />
                     </button>
@@ -58,15 +70,17 @@ export function WineMapClient({ views, regions }: { views: MapViewData[]; region
             </ul>
           </div>
         ))}
-        <p className="mt-2 text-xs text-ink-muted">Dane kartograficzne: Natural Earth (domena publiczna).</p>
+        <p className="text-ink-muted mt-2 text-xs">
+          Dane kartograficzne: Natural Earth (domena publiczna).
+        </p>
       </div>
 
       <div>
         {selected && (
-          <article aria-live="polite" className="rounded-sm border border-cream-300 bg-white p-7">
+          <article aria-live="polite" className="border-cream-300 rounded-sm border bg-white p-7">
             <p className="eyebrow">{selected.country}</p>
             <h3 className="mt-2 text-2xl font-semibold">{selected.name}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-ink">{selected.description}</p>
+            <p className="text-ink mt-3 text-sm leading-relaxed">{selected.description}</p>
             <dl className="mt-5 space-y-3 text-sm">
               <div>
                 <dt className="font-semibold">Klimat</dt>
@@ -78,14 +92,19 @@ export function WineMapClient({ views, regions }: { views: MapViewData[]; region
               </div>
             </dl>
             {selected.article && (
-              <Link href={selected.article} className="mt-6 inline-block text-sm font-semibold text-burgundy-700 hover:underline">
+              <Link
+                href={selected.article}
+                className="text-burgundy-700 mt-6 inline-block text-sm font-semibold hover:underline"
+              >
                 Przeczytaj artykuł o regionie →
               </Link>
             )}
           </article>
         )}
-        <details className="mt-4 rounded-sm border border-cream-300 bg-cream-50 p-4 text-sm" open>
-          <summary className="cursor-pointer font-semibold">Wszystkie regiony ({regions.length})</summary>
+        <details className="border-cream-300 bg-cream-50 mt-4 rounded-sm border p-4 text-sm" open>
+          <summary className="cursor-pointer font-semibold">
+            Wszystkie regiony ({regions.length})
+          </summary>
           <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5">
             {regions.map((r) => (
               <li key={r.id}>
@@ -93,10 +112,11 @@ export function WineMapClient({ views, regions }: { views: MapViewData[]; region
                   type="button"
                   onClick={() => {
                     setSelectedId(r.id);
-                    if (!views.find((v) => v.key === viewKey)?.markers.some((m) => m.id === r.id)) setViewKey("world");
+                    if (!views.find((v) => v.key === viewKey)?.markers.some((m) => m.id === r.id))
+                      setViewKey("world");
                   }}
                   aria-pressed={r.id === selectedId}
-                  className={`text-left hover:text-burgundy-700 ${r.id === selectedId ? "font-semibold text-burgundy-700" : "text-ink"}`}
+                  className={`hover:text-burgundy-700 text-left ${r.id === selectedId ? "text-burgundy-700 font-semibold" : "text-ink"}`}
                 >
                   {r.name}
                 </button>

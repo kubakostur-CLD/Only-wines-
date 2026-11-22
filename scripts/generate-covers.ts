@@ -30,7 +30,15 @@ const svg = (body: string, bg: string) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="${bg}"/>${body}</svg>\n`;
 
 /** Rows of vines converging on rolling hills. */
-function hills(opts: { sky: string; far: string; mid: string; near: string; line: string; sun?: boolean; cypress?: boolean }) {
+function hills(opts: {
+  sky: string;
+  far: string;
+  mid: string;
+  near: string;
+  line: string;
+  sun?: boolean;
+  cypress?: boolean;
+}) {
   let rows = "";
   for (let i = 0; i < 22; i++) {
     const x0 = -200 + i * 95;
@@ -38,7 +46,13 @@ function hills(opts: { sky: string; far: string; mid: string; near: string; line
   }
   let cypresses = "";
   if (opts.cypress) {
-    [[1060, 470], [1100, 455], [1140, 480], [300, 520], [1300, 500]].forEach(([x, y]) => {
+    [
+      [1060, 470],
+      [1100, 455],
+      [1140, 480],
+      [300, 520],
+      [1300, 500],
+    ].forEach(([x, y]) => {
       cypresses += `<path d="M${x} ${y} C ${x - 14} ${y - 60} ${x - 6} ${y - 120} ${x} ${y - 150} C ${x + 6} ${y - 120} ${x + 14} ${y - 60} ${x} ${y}Z" fill="${C.oliveDark}"/>`;
     });
   }
@@ -68,13 +82,20 @@ function barrels() {
   // Cellar arch
   const arch = `<path d="M0 900 L0 300 Q 800 -120 1600 300 L1600 900" fill="none" stroke="${C.gold}" stroke-width="3" opacity="0.5"/>
     <path d="M60 900 L60 330 Q 800 -50 1540 330 L1540 900" fill="none" stroke="${C.gold}" stroke-width="1.5" opacity="0.35"/>`;
-  return svg(`${arch}<rect y="820" width="${W}" height="80" fill="${C.burgundyDeep}"/>${b}`, C.burgundyDark);
+  return svg(
+    `${arch}<rect y="820" width="${W}" height="80" fill="${C.burgundyDeep}"/>${b}`,
+    C.burgundyDark,
+  );
 }
 
 /** Qvevri – a large clay vessel buried in the ground. */
 function qvevri() {
   const soil = `<rect y="430" width="${W}" height="470" fill="#7a4a34"/><rect y="430" width="${W}" height="12" fill="${C.oliveDark}"/>`;
-  const layers = Array.from({ length: 8 }, (_, i) => `<path d="M0 ${480 + i * 55} Q 800 ${470 + i * 55 + (i % 2 ? 14 : -14)} 1600 ${480 + i * 55}" stroke="#5d3626" stroke-width="2" fill="none" opacity="0.6"/>`).join("");
+  const layers = Array.from(
+    { length: 8 },
+    (_, i) =>
+      `<path d="M0 ${480 + i * 55} Q 800 ${470 + i * 55 + (i % 2 ? 14 : -14)} 1600 ${480 + i * 55}" stroke="#5d3626" stroke-width="2" fill="none" opacity="0.6"/>`,
+  ).join("");
   const vessel = (cx: number, s: number) =>
     `<path d="M${cx - 60 * s} ${430} C ${cx - 210 * s} ${520} ${cx - 220 * s} ${700} ${cx} ${860} C ${cx + 220 * s} ${700} ${cx + 210 * s} ${520} ${cx + 60 * s} ${430}Z" fill="#c07a52" stroke="${C.goldLight}" stroke-width="3"/>
      <ellipse cx="${cx}" cy="430" rx="${62 * s}" ry="${16 * s}" fill="${C.burgundyDeep}" stroke="${C.goldLight}" stroke-width="3"/>`;
@@ -120,9 +141,13 @@ function bubbles() {
     const x = 120 + ((i * 197) % 1360);
     const y = 120 + ((i * 113) % 700);
     const r = 4 + ((i * 7) % 16);
-    b += `<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${C.goldLight}" stroke-width="${r > 12 ? 2 : 1.5}" opacity="${0.3 + ((i % 5) * 0.12)}"/>`;
+    b += `<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${C.goldLight}" stroke-width="${r > 12 ? 2 : 1.5}" opacity="${0.3 + (i % 5) * 0.12}"/>`;
   }
-  const arches = Array.from({ length: 4 }, (_, i) => `<path d="M${-100 + i * 450} 900 L${-100 + i * 450} 420 Q ${125 + i * 450} 200 ${350 + i * 450} 420 L${350 + i * 450} 900" fill="none" stroke="${C.cream}" stroke-width="2" opacity="0.18"/>`).join("");
+  const arches = Array.from(
+    { length: 4 },
+    (_, i) =>
+      `<path d="M${-100 + i * 450} 900 L${-100 + i * 450} 420 Q ${125 + i * 450} 200 ${350 + i * 450} 420 L${350 + i * 450} 900" fill="none" stroke="${C.cream}" stroke-width="2" opacity="0.18"/>`,
+  ).join("");
   return svg(`${arches}${b}`, C.burgundyDeep);
 }
 
@@ -173,15 +198,41 @@ function misty() {
 const covers: Record<string, string> = {
   "dlaczego-wino-dojrzewa-w-debowych-beczkach": barrels(),
   "qvevri-8000-lat-gruzinskiej-tradycji": qvevri(),
-  "enoturystyka-w-polsce-szlaki-i-regiony-winiarskie": hills({ sky: "#dfe6d8", far: "#9aa77e", mid: C.olive, near: C.oliveDark, line: C.goldLight, sun: true }),
-  "szlachetna-plesn-botrytis-cinerea": grapes({ bg: C.creamDeep, berry: "#c39a4a", rot: true, leaf: C.olive }),
+  "enoturystyka-w-polsce-szlaki-i-regiony-winiarskie": hills({
+    sky: "#dfe6d8",
+    far: "#9aa77e",
+    mid: C.olive,
+    near: C.oliveDark,
+    line: C.goldLight,
+    sun: true,
+  }),
+  "szlachetna-plesn-botrytis-cinerea": grapes({
+    bg: C.creamDeep,
+    berry: "#c39a4a",
+    rot: true,
+    leaf: C.olive,
+  }),
   "metoda-tradycyjna-jak-powstaja-babelki": bubbles(),
   "filoksera-zaraza-ktora-zmienila-winnice-europy": phylloxera(),
-  "szlak-winny-toskanii": hills({ sky: "#f3dcc0", far: "#c9a46f", mid: "#9a8a52", near: C.oliveDark, line: C.cream, sun: true, cypress: true }),
+  "szlak-winny-toskanii": hills({
+    sky: "#f3dcc0",
+    far: "#c9a46f",
+    mid: "#9a8a52",
+    near: C.oliveDark,
+    line: C.cream,
+    sun: true,
+    cypress: true,
+  }),
   "korek-ciekawostki-o-debie-korkowym": cork(),
   "pinot-noir-kaprysny-szczep": grapes({ bg: C.cream, berry: "#4b2a4a", leaf: C.oliveDark }),
   "tokaj-region-ktory-pokochala-dawna-polska": misty(),
-  domyslna: hills({ sky: C.creamDeep, far: C.sand, mid: C.burgundyLight, near: C.burgundy, line: C.goldLight }),
+  domyslna: hills({
+    sky: C.creamDeep,
+    far: C.sand,
+    mid: C.burgundyLight,
+    near: C.burgundy,
+    line: C.goldLight,
+  }),
 };
 
 const dir = path.join(process.cwd(), "public", "images", "okladki");

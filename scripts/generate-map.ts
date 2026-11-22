@@ -11,7 +11,8 @@ import { geoMercator, geoNaturalEarth1, geoPath, geoGraticule, type GeoProjectio
 import { feature } from "topojson-client";
 import type { Topology, GeometryCollection } from "topojson-specification";
 
-const require_ = (p: string) => JSON.parse(fs.readFileSync(path.join(process.cwd(), "node_modules", p), "utf8"));
+const require_ = (p: string) =>
+  JSON.parse(fs.readFileSync(path.join(process.cwd(), "node_modules", p), "utf8"));
 
 const world110 = require_("world-atlas/land-110m.json") as Topology;
 const world50 = require_("world-atlas/land-50m.json") as Topology;
@@ -24,7 +25,13 @@ const round = (s: string) =>
     .replace(/-?\d+\.\d+/g, (n) => Math.round(parseFloat(n)).toString())
     .replace(/L(-?\d+),(-?\d+)(?=L\1,\2)/g, "");
 
-function build(name: string, projection: GeoProjection, land: typeof land110, width: number, height: number) {
+function build(
+  name: string,
+  projection: GeoProjection,
+  land: typeof land110,
+  width: number,
+  height: number,
+) {
   const p = geoPath(projection);
   return {
     name,
@@ -42,7 +49,15 @@ function build(name: string, projection: GeoProjection, land: typeof land110, wi
 const W = 1000;
 const world = build(
   "world",
-  geoNaturalEarth1().rotate([-10, 0]).fitExtent([[10, 10], [W - 10, 500]], { type: "Sphere" }),
+  geoNaturalEarth1()
+    .rotate([-10, 0])
+    .fitExtent(
+      [
+        [10, 10],
+        [W - 10, 500],
+      ],
+      { type: "Sphere" },
+    ),
   land110,
   W,
   510,
@@ -51,13 +66,31 @@ const world = build(
 const europeBox: GeoJSON.Feature = {
   type: "Feature",
   properties: {},
-  geometry: { type: "MultiPoint", coordinates: [[-10, 35.5], [30, 35.5], [-10, 55], [30, 55], [45, 44]] },
+  geometry: {
+    type: "MultiPoint",
+    coordinates: [
+      [-10, 35.5],
+      [30, 35.5],
+      [-10, 55],
+      [30, 55],
+      [45, 44],
+    ],
+  },
 };
 const europe = build(
   "europe",
   geoMercator()
-    .fitExtent([[20, 20], [W - 20, 620]], europeBox)
-    .clipExtent([[0, 0], [W, 640]]),
+    .fitExtent(
+      [
+        [20, 20],
+        [W - 20, 620],
+      ],
+      europeBox,
+    )
+    .clipExtent([
+      [0, 0],
+      [W, 640],
+    ]),
   land50,
   W,
   640,

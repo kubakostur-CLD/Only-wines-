@@ -51,16 +51,21 @@ export function Quiz({ questions }: { questions: QuizQuestion[] }) {
           ? "Bardzo dobrze! Kilka tematów warto jeszcze zgłębić."
           : "Dobry początek. W naszych artykułach znajdziesz odpowiedzi na wszystkie pytania.";
     return (
-      <div className="rounded-sm border border-cream-300 bg-white p-8 text-center md:p-12">
+      <div className="border-cream-300 rounded-sm border bg-white p-8 text-center md:p-12">
         <p className="eyebrow">Wynik</p>
         <h2 ref={headingRef} tabIndex={-1} className="mt-3 text-4xl font-semibold outline-none">
           {score} / {questions.length}
         </h2>
-        <p className="mt-2 text-ink-muted">
-          {score} {plural(score, ["poprawna odpowiedź", "poprawne odpowiedzi", "poprawnych odpowiedzi"])}
+        <p className="text-ink-muted mt-2">
+          {score}{" "}
+          {plural(score, ["poprawna odpowiedź", "poprawne odpowiedzi", "poprawnych odpowiedzi"])}
         </p>
         <p className="mx-auto mt-6 max-w-md text-lg">{verdict}</p>
-        <button type="button" onClick={restart} className="mt-8 rounded-full bg-burgundy-700 px-7 py-3 text-sm font-semibold text-cream-50 hover:bg-burgundy-900">
+        <button
+          type="button"
+          onClick={restart}
+          className="bg-burgundy-700 text-cream-50 hover:bg-burgundy-900 mt-8 rounded-full px-7 py-3 text-sm font-semibold"
+        >
           Spróbuj jeszcze raz
         </button>
       </div>
@@ -68,20 +73,27 @@ export function Quiz({ questions }: { questions: QuizQuestion[] }) {
   }
 
   return (
-    <div className="rounded-sm border border-cream-300 bg-white p-6 md:p-10">
-      <div className="flex items-center justify-between text-sm text-ink-muted">
+    <div className="border-cream-300 rounded-sm border bg-white p-6 md:p-10">
+      <div className="text-ink-muted flex items-center justify-between text-sm">
         <span>
           Pytanie {index + 1} z {questions.length}
         </span>
         <span>Wynik: {score}</span>
       </div>
-      <div className="mt-3 h-1 w-full overflow-hidden rounded bg-cream-200" aria-hidden="true">
-        <div className="h-full bg-burgundy-700 transition-all" style={{ width: `${(index / questions.length) * 100}%` }} />
+      <div className="bg-cream-200 mt-3 h-1 w-full overflow-hidden rounded" aria-hidden="true">
+        <div
+          className="bg-burgundy-700 h-full transition-all"
+          style={{ width: `${(index / questions.length) * 100}%` }}
+        />
       </div>
 
       <fieldset className="mt-8">
         <legend>
-          <h2 ref={headingRef} tabIndex={-1} className="text-2xl leading-snug font-semibold outline-none md:text-3xl">
+          <h2
+            ref={headingRef}
+            tabIndex={-1}
+            className="text-2xl leading-snug font-semibold outline-none md:text-3xl"
+          >
             {q.question}
           </h2>
         </legend>
@@ -107,8 +119,12 @@ export function Quiz({ questions }: { questions: QuizQuestion[] }) {
                 }`}
               >
                 <span>{opt}</span>
-                {state === "correct" && <span className="text-sm font-semibold">Poprawna odpowiedź</span>}
-                {state === "wrong" && <span className="text-sm font-semibold">Twoja odpowiedź</span>}
+                {state === "correct" && (
+                  <span className="text-sm font-semibold">Poprawna odpowiedź</span>
+                )}
+                {state === "wrong" && (
+                  <span className="text-sm font-semibold">Twoja odpowiedź</span>
+                )}
               </button>
             );
           })}
@@ -117,11 +133,18 @@ export function Quiz({ questions }: { questions: QuizQuestion[] }) {
 
       <div aria-live="polite">
         {answered && (
-          <div className="mt-6 border-l-2 border-gold-500 bg-cream-50 px-5 py-4">
-            <p className="font-semibold">{selected === q.answer ? "Brawo, to prawidłowa odpowiedź!" : "Niestety, to nie ta odpowiedź."}</p>
-            <p className="mt-1 leading-relaxed text-ink-muted">{q.explanation}</p>
+          <div className="border-gold-500 bg-cream-50 mt-6 border-l-2 px-5 py-4">
+            <p className="font-semibold">
+              {selected === q.answer
+                ? "Brawo, to prawidłowa odpowiedź!"
+                : "Niestety, to nie ta odpowiedź."}
+            </p>
+            <p className="text-ink-muted mt-1 leading-relaxed">{q.explanation}</p>
             {q.link && (
-              <Link href={q.link} className="mt-2 inline-block text-sm font-semibold text-burgundy-700 hover:underline">
+              <Link
+                href={q.link}
+                className="text-burgundy-700 mt-2 inline-block text-sm font-semibold hover:underline"
+              >
                 Przeczytaj artykuł →
               </Link>
             )}
@@ -134,7 +157,7 @@ export function Quiz({ questions }: { questions: QuizQuestion[] }) {
           type="button"
           onClick={next}
           disabled={!answered}
-          className="rounded-full bg-burgundy-700 px-7 py-3 text-sm font-semibold text-cream-50 transition-colors hover:bg-burgundy-900 disabled:cursor-not-allowed disabled:opacity-40"
+          className="bg-burgundy-700 text-cream-50 hover:bg-burgundy-900 rounded-full px-7 py-3 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-40"
         >
           {index + 1 >= questions.length ? "Zobacz wynik" : "Następne pytanie"}
         </button>

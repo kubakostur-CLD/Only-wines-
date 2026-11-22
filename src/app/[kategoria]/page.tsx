@@ -18,7 +18,11 @@ export async function generateMetadata({ params }: PageProps<"/[kategoria]">) {
   const { kategoria } = await params;
   const category = categoryBySlug(kategoria);
   if (!category) return {};
-  return buildMetadata({ title: category.name, description: category.seoDescription, path: `/${category.slug}` });
+  return buildMetadata({
+    title: category.name,
+    description: category.seoDescription,
+    path: `/${category.slug}`,
+  });
 }
 
 export default async function CategoryPage({ params }: PageProps<"/[kategoria]">) {
@@ -38,8 +42,10 @@ export default async function CategoryPage({ params }: PageProps<"/[kategoria]">
       />
       {category.slug === "regiony-winiarskie" && (
         <section aria-labelledby="mapa" className="container-page pt-14">
-          <h2 id="mapa" className="text-3xl font-semibold">Interaktywna mapa regionów winiarskich</h2>
-          <p className="mt-2 max-w-2xl text-ink-muted">
+          <h2 id="mapa" className="text-3xl font-semibold">
+            Interaktywna mapa regionów winiarskich
+          </h2>
+          <p className="text-ink-muted mt-2 max-w-2xl">
             Wybierz punkt na mapie lub z listy, aby poznać klimat, szczepy i charakter regionu.
           </p>
           <div className="mt-8">

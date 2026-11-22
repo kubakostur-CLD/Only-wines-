@@ -2,9 +2,21 @@
 export function VineyardIllustration({ className = "" }: { className?: string }) {
   const rows = Array.from({ length: 14 }, (_, i) => i);
   return (
-    <svg viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax slice" className={className} aria-hidden="true" focusable="false">
-      <path d="M0 210 C 240 120 420 150 640 190 S 1080 110 1440 170 L1440 320 L0 320Z" fill="#2e0c14" />
-      <path d="M0 250 C 300 190 560 230 820 250 S 1220 200 1440 230 L1440 320 L0 320Z" fill="#4a1420" />
+    <svg
+      viewBox="0 0 1440 320"
+      preserveAspectRatio="xMidYMax slice"
+      className={className}
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        d="M0 210 C 240 120 420 150 640 190 S 1080 110 1440 170 L1440 320 L0 320Z"
+        fill="#2e0c14"
+      />
+      <path
+        d="M0 250 C 300 190 560 230 820 250 S 1220 200 1440 230 L1440 320 L0 320Z"
+        fill="#4a1420"
+      />
       {rows.map((i) => (
         <path
           key={i}

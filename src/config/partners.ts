@@ -11,7 +11,8 @@
  * link still works – it simply points to the partner's site without tracking.
  */
 
-export type PartnerCategory = "wycieczki" | "noclegi" | "podroze" | "edukacja" | "ksiazki" | "akcesoria";
+export type PartnerCategory =
+  "wycieczki" | "noclegi" | "podroze" | "edukacja" | "ksiazki" | "akcesoria";
 
 export const partnerCategoryLabels: Record<PartnerCategory, string> = {
   wycieczki: "Wycieczki i zwiedzanie",
@@ -31,7 +32,6 @@ export interface Partner {
   /** Builds the outbound URL for a search query (or the partner homepage if no query). */
   buildUrl: (query?: string) => string;
 }
-
 
 /** Wrap a target URL in a network deeplink template (Awin, Impact, Convertiser…) if configured. */
 const deeplink = (template: string, target: string) =>
@@ -106,7 +106,10 @@ export const partners = {
     category: "ksiazki",
     defaultLabel: "Książki o winie i winiarstwie",
     buildUrl: (query) =>
-      deeplink(ids.empik, `https://www.empik.com/szukaj/produkt?q=${q(query ?? "książki o winie")}&qtype=basicForm`),
+      deeplink(
+        ids.empik,
+        `https://www.empik.com/szukaj/produkt?q=${q(query ?? "książki o winie")}&qtype=basicForm`,
+      ),
   },
   amazon: {
     id: "amazon",

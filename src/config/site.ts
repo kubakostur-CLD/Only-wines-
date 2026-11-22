@@ -84,7 +84,8 @@ export const categories: Category[] = [
   {
     slug: "enoturystyka",
     name: "Enoturystyka",
-    description: "Szlaki winne, winobrania i winnice otwarte dla zwiedzających, w Polsce i na świecie.",
+    description:
+      "Szlaki winne, winobrania i winnice otwarte dla zwiedzających, w Polsce i na świecie.",
     seoDescription:
       "Enoturystyka: przewodniki po szlakach winnych, święta winobrania, zwiedzanie winnic i piwnic w Polsce i Europie.",
   },
@@ -135,4 +136,5 @@ export const legalConfig = {
 } as const;
 
 /** Absolute URL helper. */
-export const absoluteUrl = (path = "/") => `${siteConfig.url}${path.startsWith("/") ? path : `/${path}`}`;
+export const absoluteUrl = (path = "/") =>
+  `${siteConfig.url}${path.startsWith("/") ? path : `/${path}`}`;

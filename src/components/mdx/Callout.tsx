@@ -18,7 +18,7 @@ export function Callout({
   return (
     <aside className={`not-prose my-8 border-l-2 px-5 py-4 ${v.cls}`}>
       <p className="eyebrow">{title ?? v.label}</p>
-      <div className="mt-2 text-[0.975rem] leading-relaxed text-ink [&_a]:text-burgundy-700 [&_a]:underline [&_p+p]:mt-3">
+      <div className="text-ink [&_a]:text-burgundy-700 mt-2 text-[0.975rem] leading-relaxed [&_a]:underline [&_p+p]:mt-3">
         {children}
       </div>
     </aside>

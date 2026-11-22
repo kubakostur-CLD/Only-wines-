@@ -37,11 +37,19 @@ export function Analytics() {
   return (
     <>
       {consent?.analytics && provider === "plausible" && plausibleDomain && (
-        <Script defer data-domain={plausibleDomain} src="https://plausible.io/js/script.js" strategy="afterInteractive" />
+        <Script
+          defer
+          data-domain={plausibleDomain}
+          src="https://plausible.io/js/script.js"
+          strategy="afterInteractive"
+        />
       )}
       {consent?.analytics && provider === "ga4" && ga4Id && (
         <>
-          <Script src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`} strategy="afterInteractive" />
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}
+            strategy="afterInteractive"
+          />
           <Script id="ga4-init" strategy="afterInteractive">
             {`gtag('js', new Date()); gtag('config', '${ga4Id}', { anonymize_ip: true });`}
           </Script>

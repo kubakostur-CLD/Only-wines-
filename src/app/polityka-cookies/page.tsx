@@ -5,7 +5,8 @@ import { ConsentSettingsLink } from "@/components/compliance/ConsentSettingsLink
 
 export const metadata = buildMetadata({
   title: "Polityka cookies",
-  description: "Jakich plików cookie używa OnlyWines.pl, w jakim celu i jak zmienić swoje ustawienia.",
+  description:
+    "Jakich plików cookie używa OnlyWines.pl, w jakim celu i jak zmienić swoje ustawienia.",
   path: "/polityka-cookies",
 });
 
@@ -44,7 +45,10 @@ export default function CookiesPage() {
           <tr>
             <td>Plausible Analytics</td>
             <td>statystyczny</td>
-            <td>anonimowe statystyki odwiedzin; narzędzie nie zapisuje plików cookie, ale uruchamiamy je dopiero po Twojej zgodzie</td>
+            <td>
+              anonimowe statystyki odwiedzin; narzędzie nie zapisuje plików cookie, ale uruchamiamy
+              je dopiero po Twojej zgodzie
+            </td>
             <td>nie dotyczy</td>
           </tr>
           <tr>
@@ -64,13 +68,15 @@ export default function CookiesPage() {
 
       <h2>Zgoda i jej zmiana</h2>
       <p>
-        Cookie statystyczne i reklamowe zapisujemy wyłącznie po wyrażeniu przez Ciebie zgody. Domyślnie są one
-        wyłączone (Google Consent Mode v2). Zgodę możesz w każdej chwili zmienić lub wycofać:
+        Cookie statystyczne i reklamowe zapisujemy wyłącznie po wyrażeniu przez Ciebie zgody.
+        Domyślnie są one wyłączone (Google Consent Mode v2). Zgodę możesz w każdej chwili zmienić
+        lub wycofać:
       </p>
-      <ConsentSettingsLink className="not-prose rounded-full border border-burgundy-700 px-5 py-2 text-sm font-semibold text-burgundy-700 hover:bg-burgundy-700 hover:text-cream-50" />
+      <ConsentSettingsLink className="not-prose border-burgundy-700 text-burgundy-700 hover:bg-burgundy-700 hover:text-cream-50 rounded-full border px-5 py-2 text-sm font-semibold" />
       <p>
-        Możesz też usunąć pliki cookie i zablokować ich zapisywanie w ustawieniach przeglądarki. Zablokowanie
-        niezbędnych plików cookie może sprawić, że prośba o potwierdzenie wieku będzie się wyświetlać przy każdej wizycie.
+        Możesz też usunąć pliki cookie i zablokować ich zapisywanie w ustawieniach przeglądarki.
+        Zablokowanie niezbędnych plików cookie może sprawić, że prośba o potwierdzenie wieku będzie
+        się wyświetlać przy każdej wizycie.
       </p>
     </ProsePage>
   );

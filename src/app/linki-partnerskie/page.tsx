@@ -6,7 +6,8 @@ import { ProsePage } from "@/components/ui/ProsePage";
 
 export const metadata = buildMetadata({
   title: "Linki partnerskie i współpraca reklamowa",
-  description: "Jak zarabia OnlyWines.pl: zasady linków partnerskich i reklam. Nie współpracujemy ze sprzedawcami alkoholu.",
+  description:
+    "Jak zarabia OnlyWines.pl: zasady linków partnerskich i reklam. Nie współpracujemy ze sprzedawcami alkoholu.",
   path: "/linki-partnerskie",
 });
 
@@ -21,13 +22,14 @@ export default function AffiliateDisclosurePage() {
     >
       <h2>Czym jest link partnerski?</h2>
       <p>
-        Niektóre linki w naszych artykułach prowadzą do usług partnerów, np. serwisów z noclegami lub wycieczkami.
-        Jeśli skorzystasz z takiej usługi, możemy otrzymać prowizję. <strong>Nie zmienia to kosztu usługi</strong> i nie
-        wpływa na treść artykułów.
+        Niektóre linki w naszych artykułach prowadzą do usług partnerów, np. serwisów z noclegami
+        lub wycieczkami. Jeśli skorzystasz z takiej usługi, możemy otrzymać prowizję.{" "}
+        <strong>Nie zmienia to kosztu usługi</strong> i nie wpływa na treść artykułów.
       </p>
       <p>
-        Każdy taki link jest wyraźnie oznaczony etykietą <strong>„Link partnerski”</strong>, a technicznie atrybutem{" "}
-        <code>rel=&quot;sponsored&quot;</code>, zgodnie z wytycznymi UOKiK i wyszukiwarek.
+        Każdy taki link jest wyraźnie oznaczony etykietą <strong>„Link partnerski”</strong>, a
+        technicznie atrybutem <code>rel=&quot;sponsored&quot;</code>, zgodnie z wytycznymi UOKiK i
+        wyszukiwarek.
       </p>
 
       <h2>Z kim współpracujemy</h2>
@@ -54,9 +56,9 @@ export default function AffiliateDisclosurePage() {
 
       <h2>Reklamy</h2>
       <p>
-        W serwisie mogą pojawiać się reklamy Google AdSense, oznaczone słowem „Reklama” i oddzielone od treści
-        redakcyjnych. Wyświetlamy je tylko po wyrażeniu zgody na cookie reklamowe. W ustawieniach AdSense blokujemy
-        kategorię reklam dotyczących alkoholu.
+        W serwisie mogą pojawiać się reklamy Google AdSense, oznaczone słowem „Reklama” i oddzielone
+        od treści redakcyjnych. Wyświetlamy je tylko po wyrażeniu zgody na cookie reklamowe. W
+        ustawieniach AdSense blokujemy kategorię reklam dotyczących alkoholu.
       </p>
 
       <p>

@@ -73,19 +73,29 @@ export default async function ArticlePage({ params }: PageProps<"/[kategoria]/[s
         />
         <div className="mx-auto mt-10 max-w-3xl text-center">
           <p className="eyebrow">{category.name}</p>
-          <h1 className="mt-4 text-4xl leading-[1.1] font-semibold md:text-[3.4rem]">{article.title}</h1>
-          <p className="mt-6 text-lg leading-relaxed text-ink-muted md:text-xl">{article.excerpt}</p>
-          <p className="mt-6 text-sm text-ink-muted">
+          <h1 className="mt-4 text-4xl leading-[1.1] font-semibold md:text-[3.4rem]">
+            {article.title}
+          </h1>
+          <p className="text-ink-muted mt-6 text-lg leading-relaxed md:text-xl">
+            {article.excerpt}
+          </p>
+          <p className="text-ink-muted mt-6 text-sm">
             <span>{author.name}</span>
-            <span aria-hidden="true" className="mx-2 text-gold-500">•</span>
+            <span aria-hidden="true" className="text-gold-500 mx-2">
+              •
+            </span>
             <time dateTime={article.date}>{formatDate(article.date)}</time>
             {article.updated && (
               <>
-                <span aria-hidden="true" className="mx-2 text-gold-500">•</span>
+                <span aria-hidden="true" className="text-gold-500 mx-2">
+                  •
+                </span>
                 aktualizacja: <time dateTime={article.updated}>{formatDate(article.updated)}</time>
               </>
             )}
-            <span aria-hidden="true" className="mx-2 text-gold-500">•</span>
+            <span aria-hidden="true" className="text-gold-500 mx-2">
+              •
+            </span>
             {article.readingMinutes} min czytania
           </p>
         </div>
@@ -100,7 +110,9 @@ export default async function ArticlePage({ params }: PageProps<"/[kategoria]/[s
             sizes="(min-width: 1024px) 1024px, 100vw"
             className="aspect-[16/9] h-auto w-full rounded-sm object-cover"
           />
-          {article.cover.credit && <figcaption className="mt-2 text-xs text-ink-muted">{article.cover.credit}</figcaption>}
+          {article.cover.credit && (
+            <figcaption className="text-ink-muted mt-2 text-xs">{article.cover.credit}</figcaption>
+          )}
         </figure>
       </header>
 
@@ -118,13 +130,21 @@ export default async function ArticlePage({ params }: PageProps<"/[kategoria]/[s
 
           {article.partners.length > 0 && (
             <PartnerBox
-              title={category.slug === "enoturystyka" || article.region ? "Planujesz podróż w ten region?" : "Dowiedz się więcej"}
+              title={
+                category.slug === "enoturystyka" || article.region
+                  ? "Planujesz podróż w ten region?"
+                  : "Dowiedz się więcej"
+              }
               description="Wybrane, sprawdzone usługi dla podróżników i miłośników wiedzy o winie."
-              items={article.partners.map((p) => ({ partner: p.id, query: p.query, label: p.label }))}
+              items={article.partners.map((p) => ({
+                partner: p.id,
+                query: p.query,
+                label: p.label,
+              }))}
             />
           )}
 
-          <div className="mt-12 border-t border-cream-300 pt-8">
+          <div className="border-cream-300 mt-12 border-t pt-8">
             <ShareButtons url={absoluteUrl(article.path)} title={article.title} />
           </div>
           <div className="mt-8">
@@ -136,8 +156,13 @@ export default async function ArticlePage({ params }: PageProps<"/[kategoria]/[s
 
       {/* ───────── Related ───────── */}
       {related.length > 0 && (
-        <section aria-labelledby="powiazane" className="container-page mt-20 border-t border-cream-300 pt-14">
-          <h2 id="powiazane" className="text-3xl font-semibold">Czytaj także</h2>
+        <section
+          aria-labelledby="powiazane"
+          className="container-page border-cream-300 mt-20 border-t pt-14"
+        >
+          <h2 id="powiazane" className="text-3xl font-semibold">
+            Czytaj także
+          </h2>
           <div className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((a) => (
               <ArticleCard key={a.slug} article={a} />

@@ -16,7 +16,10 @@ export function ArticleFilter({ articles }: { articles: Card[] }) {
   const tags = useMemo(() => {
     const counts = new Map<string, number>();
     articles.forEach((a) => a.tags.forEach((t) => counts.set(t, (counts.get(t) ?? 0) + 1)));
-    return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "pl")).slice(0, 14).map(([t]) => t);
+    return [...counts.entries()]
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "pl"))
+      .slice(0, 14)
+      .map(([t]) => t);
   }, [articles]);
 
   const visible = useMemo(() => {
@@ -27,39 +30,58 @@ export function ArticleFilter({ articles }: { articles: Card[] }) {
         (!q || `${a.title} ${a.excerpt} ${a.tags.join(" ")}`.toLocaleLowerCase("pl").includes(q)),
     );
     return [...list].sort((a, b) =>
-      sort === "newest" ? b.date.localeCompare(a.date) : sort === "oldest" ? a.date.localeCompare(b.date) : a.readingMinutes - b.readingMinutes,
+      sort === "newest"
+        ? b.date.localeCompare(a.date)
+        : sort === "oldest"
+          ? a.date.localeCompare(b.date)
+          : a.readingMinutes - b.readingMinutes,
     );
   }, [articles, query, tag, sort]);
 
   return (
     <div>
-      <div className="flex flex-col gap-4 border-b border-cream-300 pb-6 md:flex-row md:items-center md:justify-between">
+      <div className="border-cream-300 flex flex-col gap-4 border-b pb-6 md:flex-row md:items-center md:justify-between">
         <div role="group" aria-label="Filtruj według tematu" className="flex flex-wrap gap-2">
-          <button type="button" onClick={() => setTag(null)} aria-pressed={tag === null} className="chip">
+          <button
+            type="button"
+            onClick={() => setTag(null)}
+            aria-pressed={tag === null}
+            className="chip"
+          >
             Wszystkie
           </button>
           {tags.map((t) => (
-            <button key={t} type="button" onClick={() => setTag(tag === t ? null : t)} aria-pressed={tag === t} className="chip">
+            <button
+              key={t}
+              type="button"
+              onClick={() => setTag(tag === t ? null : t)}
+              aria-pressed={tag === t}
+              className="chip"
+            >
               {t}
             </button>
           ))}
         </div>
         <div className="flex shrink-0 gap-3">
-          <label className="sr-only" htmlFor="szukaj">Szukaj w dziale</label>
+          <label className="sr-only" htmlFor="szukaj">
+            Szukaj w dziale
+          </label>
           <input
             id="szukaj"
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Szukaj…"
-            className="h-10 w-full rounded-full border border-cream-300 bg-white px-4 text-sm focus:border-burgundy-700 focus:outline-none md:w-48"
+            className="border-cream-300 focus:border-burgundy-700 h-10 w-full rounded-full border bg-white px-4 text-sm focus:outline-none md:w-48"
           />
-          <label className="sr-only" htmlFor="sortuj">Sortuj</label>
+          <label className="sr-only" htmlFor="sortuj">
+            Sortuj
+          </label>
           <select
             id="sortuj"
             value={sort}
             onChange={(e) => setSort(e.target.value as typeof sort)}
-            className="h-10 rounded-full border border-cream-300 bg-white px-3 text-sm focus:border-burgundy-700 focus:outline-none"
+            className="border-cream-300 focus:border-burgundy-700 h-10 rounded-full border bg-white px-3 text-sm focus:outline-none"
           >
             <option value="newest">Najnowsze</option>
             <option value="oldest">Najstarsze</option>
@@ -79,7 +101,9 @@ export function ArticleFilter({ articles }: { articles: Card[] }) {
           ))}
         </div>
       ) : (
-        <p className="mt-12 text-ink-muted">Brak artykułów spełniających kryteria. Spróbuj innego filtra.</p>
+        <p className="text-ink-muted mt-12">
+          Brak artykułów spełniających kryteria. Spróbuj innego filtra.
+        </p>
       )}
     </div>
   );

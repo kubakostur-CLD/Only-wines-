@@ -26,7 +26,10 @@ const categorySlugs = categories.map((c) => c.slug) as [CategorySlug, ...Categor
 /** Polish SEO slug: lowercase ASCII letters, digits and hyphens only. */
 const slugSchema = z
   .string()
-  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Slug: tylko małe litery bez polskich znaków, cyfry i myślniki");
+  .regex(
+    /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+    "Slug: tylko małe litery bez polskich znaków, cyfry i myślniki",
+  );
 
 export const articleFrontmatterSchema = z.object({
   title: z.string().min(10).max(110),
@@ -112,7 +115,9 @@ function parseArticle(file: string): Article {
   const { data, content } = matter(raw);
   const parsed = articleFrontmatterSchema.safeParse(data);
   if (!parsed.success) {
-    const issues = parsed.error.issues.map((i) => `  • ${i.path.join(".")}: ${i.message}`).join("\n");
+    const issues = parsed.error.issues
+      .map((i) => `  • ${i.path.join(".")}: ${i.message}`)
+      .join("\n");
     throw new Error(`Błąd we frontmatterze pliku content/artykuly/${file}:\n${issues}`);
   }
   const fm = parsed.data;
@@ -184,7 +189,9 @@ function readJson<T>(file: string, schema: z.ZodType<T>): T {
   const raw = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, file), "utf8"));
   const parsed = schema.safeParse(raw);
   if (!parsed.success) {
-    throw new Error(`Błąd w pliku content/${file}: ${parsed.error.issues[0]?.message} (${parsed.error.issues[0]?.path.join(".")})`);
+    throw new Error(
+      `Błąd w pliku content/${file}: ${parsed.error.issues[0]?.message} (${parsed.error.issues[0]?.path.join(".")})`,
+    );
   }
   return parsed.data;
 }
@@ -207,7 +214,9 @@ const glossarySchema = z.object({
 });
 export type GlossaryEntry = z.infer<typeof glossarySchema>;
 export const getGlossary = cache(() =>
-  readJson("slowniczek.json", z.array(glossarySchema)).sort((a, b) => a.term.localeCompare(b.term, "pl")),
+  readJson("slowniczek.json", z.array(glossarySchema)).sort((a, b) =>
+    a.term.localeCompare(b.term, "pl"),
+  ),
 );
 
 const quizSchema = z.object({

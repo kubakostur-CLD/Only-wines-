@@ -9,7 +9,15 @@ const endpoint = process.env.NEXT_PUBLIC_FORMSPREE_CONTACT;
  * Contact / partnership form. Sends to Formspree (NEXT_PUBLIC_FORMSPREE_CONTACT);
  * without configuration it falls back to opening the visitor's e-mail client.
  */
-export function ContactForm({ email, subject, partnership = false }: { email: string; subject: string; partnership?: boolean }) {
+export function ContactForm({
+  email,
+  subject,
+  partnership = false,
+}: {
+  email: string;
+  subject: string;
+  partnership?: boolean;
+}) {
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const id = useId();
 
@@ -27,7 +35,11 @@ export function ContactForm({ email, subject, partnership = false }: { email: st
     }
     setStatus("sending");
     try {
-      const res = await fetch(endpoint, { method: "POST", body: data, headers: { Accept: "application/json" } });
+      const res = await fetch(endpoint, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
       setStatus(res.ok ? "ok" : "error");
       if (res.ok) form.reset();
     } catch {
@@ -37,18 +49,29 @@ export function ContactForm({ email, subject, partnership = false }: { email: st
 
   if (status === "ok") {
     return (
-      <p role="status" className="rounded-sm border border-cream-300 bg-white p-6 text-lg">
+      <p role="status" className="border-cream-300 rounded-sm border bg-white p-6 text-lg">
         Dziękujemy za wiadomość! Odpowiemy najszybciej, jak to możliwe.
       </p>
     );
   }
 
-  const field = "mt-1.5 block w-full rounded-sm border border-cream-300 bg-white px-4 py-3 text-ink focus:border-burgundy-700 focus:outline-none";
+  const field =
+    "mt-1.5 block w-full rounded-sm border border-cream-300 bg-white px-4 py-3 text-ink focus:border-burgundy-700 focus:outline-none";
   return (
-    <form onSubmit={onSubmit} className="not-prose grid gap-5 rounded-sm border border-cream-300 bg-cream-50 p-6 md:p-8">
+    <form
+      onSubmit={onSubmit}
+      className="not-prose border-cream-300 bg-cream-50 grid gap-5 rounded-sm border p-6 md:p-8"
+    >
       <input type="hidden" name="_subject" value={subject} />
       {/* Honeypot against spam bots */}
-      <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+      <input
+        type="text"
+        name="_gotcha"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        aria-hidden="true"
+      />
       <div className="grid gap-5 sm:grid-cols-2">
         <label htmlFor={`${id}-name`} className="text-sm font-semibold">
           Imię i nazwisko
@@ -56,14 +79,27 @@ export function ContactForm({ email, subject, partnership = false }: { email: st
         </label>
         <label htmlFor={`${id}-email`} className="text-sm font-semibold">
           E-mail
-          <input id={`${id}-email`} name="email" type="email" required autoComplete="email" className={field} />
+          <input
+            id={`${id}-email`}
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            className={field}
+          />
         </label>
       </div>
       {partnership && (
         <div className="grid gap-5 sm:grid-cols-2">
           <label htmlFor={`${id}-org`} className="text-sm font-semibold">
             Organizacja / miejsce
-            <input id={`${id}-org`} name="organizacja" required autoComplete="organization" className={field} />
+            <input
+              id={`${id}-org`}
+              name="organizacja"
+              required
+              autoComplete="organization"
+              className={field}
+            />
           </label>
           <label htmlFor={`${id}-type`} className="text-sm font-semibold">
             Rodzaj współpracy
@@ -82,10 +118,16 @@ export function ContactForm({ email, subject, partnership = false }: { email: st
         Wiadomość
         <textarea id={`${id}-msg`} name="wiadomosc" required rows={6} className={field} />
       </label>
-      <label className="flex items-start gap-3 text-xs leading-relaxed text-ink-muted">
-        <input type="checkbox" name="zgoda" required className="mt-0.5 h-4 w-4 shrink-0 accent-burgundy-700" />
+      <label className="text-ink-muted flex items-start gap-3 text-xs leading-relaxed">
+        <input
+          type="checkbox"
+          name="zgoda"
+          required
+          className="accent-burgundy-700 mt-0.5 h-4 w-4 shrink-0"
+        />
         <span>
-          Wyrażam zgodę na przetwarzanie moich danych w celu udzielenia odpowiedzi na wiadomość. Szczegóły w{" "}
+          Wyrażam zgodę na przetwarzanie moich danych w celu udzielenia odpowiedzi na wiadomość.
+          Szczegóły w{" "}
           <Link href="/polityka-prywatnosci" className="underline underline-offset-2">
             polityce prywatności
           </Link>
@@ -96,13 +138,17 @@ export function ContactForm({ email, subject, partnership = false }: { email: st
         <button
           type="submit"
           disabled={status === "sending"}
-          className="rounded-full bg-burgundy-700 px-7 py-3 text-sm font-semibold text-cream-50 hover:bg-burgundy-900 disabled:opacity-50"
+          className="bg-burgundy-700 text-cream-50 hover:bg-burgundy-900 rounded-full px-7 py-3 text-sm font-semibold disabled:opacity-50"
         >
           {status === "sending" ? "Wysyłanie…" : "Wyślij wiadomość"}
         </button>
         {status === "error" && (
-          <p role="alert" className="text-sm text-burgundy-500">
-            Nie udało się wysłać. Napisz bezpośrednio na <a href={`mailto:${email}`} className="underline">{email}</a>.
+          <p role="alert" className="text-burgundy-500 text-sm">
+            Nie udało się wysłać. Napisz bezpośrednio na{" "}
+            <a href={`mailto:${email}`} className="underline">
+              {email}
+            </a>
+            .
           </p>
         )}
       </div>

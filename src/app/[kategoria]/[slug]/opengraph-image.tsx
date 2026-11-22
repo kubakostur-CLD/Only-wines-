@@ -10,7 +10,11 @@ export function generateStaticParams() {
   return getAllArticles().map((a) => ({ kategoria: a.category, slug: a.slug }));
 }
 
-export default async function Image({ params }: { params: Promise<{ kategoria: string; slug: string }> }) {
+export default async function Image({
+  params,
+}: {
+  params: Promise<{ kategoria: string; slug: string }>;
+}) {
   const { kategoria, slug } = await params;
   const article = getArticle(kategoria, slug);
   return renderOg({
